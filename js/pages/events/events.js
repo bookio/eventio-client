@@ -10,6 +10,13 @@ module.exports = React.createClass({
 		
 		return (
 			<div>
+			<ui.Grid>
+				<ui.Jumbotron>
+					<h2>Aktuella events</h2>
+					<p>Boka nu!</p>
+				</ui.Jumbotron>	
+			</ui.Grid>
+
 			
 			<ui.Grid>
 				<ui.Row>
@@ -46,6 +53,12 @@ module.exports = React.createClass({
 				</ui.Row>
 			</ui.Grid>
 
+			<ui.Grid>
+				<ui.Jumbotron>
+					<h2>Visar nu i annat format</h2>
+					<p>Kanske detta är snyggare...</p>
+				</ui.Jumbotron>	
+			</ui.Grid>
 
 
 			<ui.Grid>

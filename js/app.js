@@ -15,8 +15,8 @@ let App = React.createClass({
 		    <ui.CollapsibleNav eventKey={0}> {/* This is the eventKey referenced */}
 		      <ui.Nav navbar right>
 		        <ui.NavItem eventKey={1} href='#/home'>Nyheter</ui.NavItem>
-		        <ui.NavItem eventKey={2} href='#/test'>Nytt event</ui.NavItem>
-		        <ui.NavItem eventKey={2} href='#/login'>Kommande events</ui.NavItem>
+		        <ui.NavItem eventKey={2} href='#/event'>Nytt event</ui.NavItem>
+		        <ui.NavItem eventKey={2} href='#/events'>Kommande events</ui.NavItem>
 		      </ui.Nav>
 		    </ui.CollapsibleNav>
 		  </ui.Navbar>
@@ -31,9 +31,9 @@ let routes = (
   <Route name="app" path="/" handler={App}>
   	<DefaultRoute handler={require('./pages/home/home.js')} />  
   	
-    <Route name="login" path="/login" handler={require('./pages/login/login.js')}/>
-    <Route name="test"  path="/test"  handler={require('./pages/test/test.js')}/>
-    <Route name="home"  path="/home"  handler={require('./pages/home/home.js')}/>
+    <Route name="events" path="/events" handler={require('./pages/events/events.js')}/>
+    <Route name="event"   path="/event"  handler={require('./pages/event/event.js')}/>
+    <Route name="home"   path="/home"  handler={require('./pages/home/home.js')}/>
     
   </Route>
 );

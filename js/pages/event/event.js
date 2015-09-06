@@ -42,7 +42,7 @@ var Label = Bootstrap.Label;
 
 //import Button from 'react-bootstrap/lib/Button';
 
-require('./test.less');
+require('./event.less');
 
 
 
@@ -190,7 +190,7 @@ var App = React.createClass({
 			React.render(<Example/>, document.getElementById('modal'));
 		}
 		return (
-			<div className='TestPage'>
+			<div className='event-page'>
 			
 			
 				<div id="modal">
@@ -284,8 +284,11 @@ var App = React.createClass({
 						</ButtonGroup>				
 					</Row>
 					
-					<Row>
+					<Row style={{textAlign:'center'}}>
 						<p/>
+						<Button bsStyle='success' style={{minWidth: '100px'}} >Skapa nytt event</Button>
+						<p/>
+						
 					</Row>
 	
 				</Grid>
