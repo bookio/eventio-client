@@ -189,9 +189,9 @@ var App = React.createClass({
 		function clickPrice() {
 			React.render(<Example/>, document.getElementById('modal'));
 		}
-		return (
+		
+		var html = (
 			<div className='event-page'>
-			
 			
 				<div id="modal">
 				</div>
@@ -255,11 +255,9 @@ var App = React.createClass({
 											</Col>
 											<Col md={6}>
 												<SplitButton title='6 timmar innan' pullRight id='split-button-pull-right'>
-												<MenuItem eventKey='1'>En timme innan</MenuItem>
-												<MenuItem eventKey='2'>En dag innan</MenuItem>
-												<MenuItem eventKey='3'>En vecka </MenuItem>
-												<MenuItem divider />
-												<MenuItem eventKey='4'>Separated link</MenuItem>
+													<MenuItem eventKey='1'>En timme innan</MenuItem>
+													<MenuItem eventKey='2'>En dag innan</MenuItem>
+													<MenuItem eventKey='3'>En vecka </MenuItem>
 												</SplitButton>	
 											</Col>
 										</Row>
@@ -271,7 +269,7 @@ var App = React.createClass({
 
 					<Row>
 						<Panel header="Kösystem">
-							<Input type='checkbox' value={this.state.value} help='Om eventet är fullt placeras nya bokningar i kö' label='Tillåt kö' hasFeedback ref='input' onChange={this.handleChange} />
+							<Input type='checkbox' value={this.state.value} help='Om eventet är fullt placeras nya bokningar i kö. Deltagarna meddelas via SMS eller mail.	' label='Tillåt kö' hasFeedback ref='input' onChange={this.handleChange} />
 						</Panel>
   					</Row>
 
@@ -293,8 +291,9 @@ var App = React.createClass({
 	
 				</Grid>
 			</div>
-
 		);
+
+		return html;
 	}
 
 });
