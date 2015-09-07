@@ -4,6 +4,7 @@ import { DefaultRoute, Link, Route, RouteHandler } from 'react-router';
 
 //require('../css/bootswatch/paper.css');
 
+
 var ui = require('react-bootstrap');
 
 let App = React.createClass({  
@@ -17,6 +18,7 @@ let App = React.createClass({
 		        <ui.NavItem eventKey={1} href='#/home'>Nyheter</ui.NavItem>
 		        <ui.NavItem eventKey={2} href='#/event'>Nytt event</ui.NavItem>
 		        <ui.NavItem eventKey={2} href='#/events'>Kommande events</ui.NavItem>
+		        <ui.NavItem eventKey={3} href='#/isotope'>Isotope</ui.NavItem>
 		      </ui.Nav>
 		    </ui.CollapsibleNav>
 		  </ui.Navbar>
@@ -31,9 +33,10 @@ let routes = (
   <Route name="app" path="/" handler={App}>
   	<DefaultRoute handler={require('./pages/home/home.js')} />  
   	
-    <Route name="events" path="/events" handler={require('./pages/events/events.js')}/>
-    <Route name="event"   path="/event"  handler={require('./pages/event/event.js')}/>
-    <Route name="home"   path="/home"  handler={require('./pages/home/home.js')}/>
+    <Route name="events"   path="/events"   handler={require('./pages/events/events.js')}/>
+    <Route name="event"    path="/event"    handler={require('./pages/event/event.js')}/>
+    <Route name="home"     path="/home"     handler={require('./pages/home/home.js')}/>
+    <Route name="isotope"  path="/isotope"  handler={require('./pages/isotope/isotope.js')}/>
     
   </Route>
 );
