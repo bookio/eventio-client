@@ -39,6 +39,9 @@ module.exports = React.createClass({
 
 		return state;
 	},
+
+	componentWillMount() {
+	},
 	
 	componentDidUpdate(prevProps, prevState) {
 		localStorage.loginPage = JSON.stringify({
@@ -80,7 +83,7 @@ module.exports = React.createClass({
 		var html = (
 			<div className='login-page'>
 			
-				<Grid >
+				<Grid style={{maxWidth:'25em'}}>
 					<Row>
 						<h2>Logga in</h2>
 					</Row>
@@ -92,9 +95,9 @@ module.exports = React.createClass({
 					</Row>
 
 					<Row style={{textAlign:'center'}}>
-						<ButtonGroup>
-							<Button onClick={this.login} bsSize={'medium'} style={{minWidth: '100px'}}>Logga in</Button>
-						</ButtonGroup>				
+							<Button onClick={this.login} bsStyle='primary' style={{width:'100%', padding:'1em'}}>
+								<img style={{width:'2em', height:'2em'}} src={require('./images/login.png')}/>
+							</Button>
 					</Row>
 
 

@@ -7,7 +7,8 @@ var Router = require('react-router'); //import {Router, DefaultRoute, Link, Rout
 let App = React.createClass({  
   render() {
     return (
-      <div className="nav">
+  
+      <div >
 		  <Navbar  brand='eventio.com' toggleNavKey={0} style={{borderRadius:'0px'}}>
 		  
 		    <CollapsibleNav eventKey={0}> {/* This is the eventKey referenced */}
@@ -17,11 +18,14 @@ let App = React.createClass({
 		        <NavItem eventKey={3} href='#/events'>Kommande events</NavItem>
 		        <NavItem eventKey={4} href='#/isotope'>Isotope</NavItem>
 		        <NavItem eventKey={5} href='#/login'>Log in</NavItem>
+		        <NavItem eventKey={5} href='#/material'>Material	</NavItem>
 		      </Nav>
 		    </CollapsibleNav>
 		  </Navbar>
         {/* this is the importTant part */}
-        <RouteHandler/>
+		<div style={{padding:'1em'}}>
+	        <RouteHandler/>
+	    </div>
       </div>
     );
   }
@@ -29,13 +33,14 @@ let App = React.createClass({
 
 let routes = (  
   <Route name="app" path="/" handler={App}>
-  	<DefaultRoute handler={require('./pages/login/login.js')} />  
+  	<DefaultRoute handler={require('./pages/material/material.js')} />  
   	
     <Route name="events"   path="/events"   handler={require('./pages/events/events.js')}/>
     <Route name="event"    path="/event"    handler={require('./pages/event/event.js')}/>
     <Route name="home"     path="/home"     handler={require('./pages/home/home.js')}/>
     <Route name="isotope"  path="/isotope"  handler={require('./pages/isotope/isotope.js')}/>
     <Route name="login"    path="/login"    handler={require('./pages/login/login.js')}/>
+    <Route name="material"    path="/material"    handler={require('./pages/material/material.js')}/>
     
   </Route>
 );

@@ -108,7 +108,9 @@ var App = React.createClass({
 						<Input type='text' value={this.state.value} placeholder='Namn' label='' help='' hasFeedback ref='input' onChange={this.handleChange} />
 					</Row>
 					<Row>
-						<Input type='textarea' value={this.state.value} placeholder='Beskrivning' label='' help='' hasFeedback ref='input' onChange={this.handleChange} />
+						<Panel style={{}}>
+							<Input type='textarea' style={{height:'4em'}} value={this.state.value} placeholder='Beskrivning' label='' help='' hasFeedback ref='input' onChange={this.handleChange} />
+						</Panel>
 					</Row>
 	
 					<Row>
@@ -116,19 +118,26 @@ var App = React.createClass({
 					</Row>
 
 					<Row>
+						<Panel>
 						<Grid>
 							<Row>
-								<Col md={6}>
-									<Input type='text' value={this.state.value} placeholder='Taggar' label='' help='' hasFeedback ref='input' onChange={this.handleChange} />
+								<Col xs={12} md={5} lg={5}>
+									<Input type='text' value={this.state.value} placeholder='' label='Pris' help='' hasFeedback ref='input' onChange={this.handleChange} />
 								</Col>
-								<Col md={6}>
-									<Input type='text' value={this.state.value} placeholder='Taggar' label='' help='' hasFeedback ref='input' onChange={this.handleChange} />
+								<Col xs={12} md={5} lg={5}>
+									<Input type='text' value={this.state.value} placeholder='' label='Datum och tid' help='' hasFeedback ref='input' onChange={this.handleChange} />
 								</Col>
 							</Row>
 							<Row>
-								<Input type='text' value={this.state.value} placeholder='Taggar' label='' help='' hasFeedback ref='input' onChange={this.handleChange} />
+								<Col xs={12} md={5} lg={5}>
+									<Input type='text' value={this.state.value} placeholder='' label='Antal platser' help='' hasFeedback ref='input' onChange={this.handleChange} />
+								</Col>
+								<Col xs={12} md={5} lg={5}>
+									<Input type='text' value={this.state.value} placeholder='' label='Plats' help='' hasFeedback ref='input' onChange={this.handleChange} />
+								</Col>
 							</Row>
 						</Grid>
+						</Panel>
 					</Row>
 	
 					<Row>
@@ -196,13 +205,6 @@ var App = React.createClass({
 						</Panel>
   					</Row>
 
-					<Row style={{textAlign:'center'}}>
-						<ButtonGroup>
-							<Button bsSize={'medium'} style={{minWidth: '100px'}}>Plats</Button>
-							<Button bsSize={'medium'} style={{minWidth: '100px'}}>Datum och tid</Button>
-							<Button bsSize={'medium'} style={{minWidth: '100px'}}>Platser</Button>
-						</ButtonGroup>				
-					</Row>
 					
 					<Row style={{textAlign:'center'}}>
 						<p/>
