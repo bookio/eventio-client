@@ -3,93 +3,16 @@
 
 */
 
-var React = require('react');
+import React from 'react';
 
-var Bootstrap = require('react-bootstrap');
 var SectionHeader = require('../../components/SectionHeader.js');
-var ui = Bootstrap;
 
-//var RaisedButton = Material.RaisedButton;
-var Grid = Bootstrap.Grid;
-var Row = Bootstrap.Row;
-var Col = Bootstrap.Col;
-var Button = Bootstrap.Button;
-var ButtonGroup = Bootstrap.ButtonGroup;
-var ButtonToolbar = Bootstrap.ButtonToolbar;
-var Input = Bootstrap.Input;
-var Well = Bootstrap.Well;
-var Panel = Bootstrap.Panel;
-var Tabs = Bootstrap.Tabs;
-var Tab = Bootstrap.Tab;
-var Modal = Bootstrap.Modal;
-var Popover = Bootstrap.Popover;
-var Tooltip = Bootstrap.Tooltip;
-var OverlayTrigger = Bootstrap.OverlayTrigger;
-var SplitButton = Bootstrap.SplitButton;
-var MenuItem = Bootstrap.MenuItem;
-var Label = Bootstrap.Label;
+import {Panel, Modal, Label, Well, Tabs, Tab, SplitButton, MenuItem, Jumbotron, Grid, Row, Col, Button, ButtonGroup, ButtonToolbar, Input, Thumbnail} from 'react-bootstrap';
 
-//import Button from 'react-bootstrap/lib/Button';
+import {sprintf} from '../../tools/tools.js';
 
 require('./event.less');
 
-
-
-const Example = React.createClass({
-
-  getInitialState(){
-    return { showModal: false };
-  },
-
-  close(){
-    this.setState({ showModal: false });
-  },
-
-  open(){
-    this.setState({ showModal: true });
-  },
-
-  render() {
-    let popover = <Popover title='popover'>very popover. such engagement</Popover>;
-    let tooltip = <Tooltip>wow.</Tooltip>;
-
-    return (
-        <Button
-          bsStyle='primary'
-          bsSize='medium'
-          onClick={this.open}>
-
-        <Modal show={this.state.showModal} onHide={this.close}>
-          <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <h4>Text in a modal</h4>
-            <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
-
-            <h4>Popover in a modal</h4>
-            <p>there is a <OverlayTrigger overlay={popover}><a href='#'>popover</a></OverlayTrigger> here</p>
-
-            <h4>Tooltips in a modal</h4>
-            <p>there is a <OverlayTrigger overlay={tooltip}><a href='#'>tooltip</a></OverlayTrigger> here</p>
-
-            <hr />
-
-            <h4>Overflowing text to show scroll behavior</h4>
-            <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-            <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button onClick={this.close}>Close</Button>
-          </Modal.Footer>
-        </Modal>
-
-        </Button>
-
-    );
-  }
-});
 
 
 var TabPrice = React.createClass({
@@ -135,35 +58,25 @@ var Separator = React.createClass({
 	}
 
 });
+
 var App = React.createClass({
 
 	getInitialState(){
 
-		// Extract the favorite locations from local storage
+		var state = {};
+		
+		state.event = {};
 
-		var favorites = [];
-
-		if(localStorage.favorites){
-			favorites = JSON.parse(localStorage.favorites);
+		if (localStorage.event) {
+			state.event = JSON.parse(localStorage.event);
 		}
 
-		// Nobody would get mad if we center it on Paris by default
-
-		return {
-			favorites: favorites,
-			currentAddress: 'Paris, France',
-			mapCoordinates: {
-				lat: 48.856614,
-				lng: 2.3522219
-			}
-		};
+		return event;
 	},
 	
 
 	render() {
 
-	
-		var btnSize = 'large';
 		
 		var gridStyle = {
 			//border: '1px solid yellow',
@@ -175,8 +88,11 @@ var App = React.createClass({
 			
 		};
 		
-		function clickPrice() {
-			React.render(<Example/>, document.getElementById('modal'));
+
+		function buttonClick(event) {
+			console.log('handling back button press');
+			event.preventDefault();
+			window.history.back();
 		}
 		
 		var html = (
@@ -186,21 +102,39 @@ var App = React.createClass({
 				</div>
 				<Grid>
 					<Row>
-					<h1>Nytt event</h1>
+						<h1>Nytt event</h1>
 					</Row>
 					<Row>
-						<Input type='text' value={this.state.value} placeholder='Namn' label='' help='Ange namnet på ditt event' hasFeedback ref='input' onChange={this.handleChange} />
+						<Input type='text' value={this.state.value} placeholder='Namn' label='' help='' hasFeedback ref='input' onChange={this.handleChange} />
 					</Row>
 					<Row>
-							<Input type='textarea' value={this.state.value} placeholder='Beskrivning' label='' help='Beskriv vad eventet handlar om' hasFeedback ref='input' onChange={this.handleChange} />
+						<Input type='textarea' value={this.state.value} placeholder='Beskrivning' label='' help='' hasFeedback ref='input' onChange={this.handleChange} />
 					</Row>
 	
 					<Row>
 						<Input type='text' value={this.state.value} placeholder='Taggar' label='' help='Exempel #tasting #excursion #seminar' hasFeedback ref='input' onChange={this.handleChange} />
 					</Row>
+
+					<Row>
+						<Grid>
+							<Row>
+								<Col md={6}>
+									<Input type='text' value={this.state.value} placeholder='Taggar' label='' help='' hasFeedback ref='input' onChange={this.handleChange} />
+								</Col>
+								<Col md={6}>
+									<Input type='text' value={this.state.value} placeholder='Taggar' label='' help='' hasFeedback ref='input' onChange={this.handleChange} />
+								</Col>
+							</Row>
+							<Row>
+								<Input type='text' value={this.state.value} placeholder='Taggar' label='' help='' hasFeedback ref='input' onChange={this.handleChange} />
+							</Row>
+						</Grid>
+					</Row>
 	
 					<Row>
-						<Panel header='Öppen för reservation'>
+					</Row>
+					<Row>
+						<Panel header={sprintf('Öppen för %s', 'reservation!')}>
 							<Grid style = {gridStyle}>
 								<Row style = {rowStyle} >
 									<Input type='radio' value={this.state.value} label='Nu' hasFeedback ref='input' onChange={this.handleChange} />
@@ -264,7 +198,6 @@ var App = React.createClass({
 
 					<Row style={{textAlign:'center'}}>
 						<ButtonGroup>
-							<Button onClick={clickPrice} bsSize={'medium'} style={{minWidth: '100px'}}>Pris</Button>
 							<Button bsSize={'medium'} style={{minWidth: '100px'}}>Plats</Button>
 							<Button bsSize={'medium'} style={{minWidth: '100px'}}>Datum och tid</Button>
 							<Button bsSize={'medium'} style={{minWidth: '100px'}}>Platser</Button>
@@ -273,7 +206,7 @@ var App = React.createClass({
 					
 					<Row style={{textAlign:'center'}}>
 						<p/>
-						<Button bsStyle='success' style={{minWidth: '100px'}} >Skapa nytt event</Button>
+						<Button bsStyle='success' onClick={buttonClick} style={{minWidth: '100px'}} >Skapa nytt event</Button>
 						<p/>
 						
 					</Row>

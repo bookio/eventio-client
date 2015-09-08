@@ -1,27 +1,7 @@
-var React = require('react');
+import React from 'react';
 
-var Bootstrap = require('react-bootstrap');
-var ui = Bootstrap;
-
-var Grid = Bootstrap.Grid;
-var Row = Bootstrap.Row;
-var Col = Bootstrap.Col;
-var Button = Bootstrap.Button;
-var ButtonGroup = Bootstrap.ButtonGroup;
-var ButtonToolbar = Bootstrap.ButtonToolbar;
-var Input = Bootstrap.Input;
-var Thumbnail = Bootstrap.Thumbnail;
-
-import { Jumbotron } from 'react-bootstrap';
-
-var React = require('react');
-
-
-/*
-var Isotope = require('../../components/isotope.js').Isotope;
-var IsotopeItem = require('../../components/isotope.js').IsotopeItem;
-*/
-
+//import {React} from 'react';
+import {Jumbotron, Grid, Row, Col, Button, ButtonGroup, ButtonToolbar, Input, Thumbnail} from 'react-bootstrap';
 
 var Isotope = React.createClass({
 
@@ -81,7 +61,7 @@ var IsotopeItem = React.createClass({
 		var style = {
 			border: '2px solid rgb(240, 240, 240)',
 			//borderStyle: 'dashed',
-			borderRadius: '8px',
+			//borderRadius: '8px',
 			margin: '0.25em',
 			minWidth: '10px',	
 			minHeight: '10px',
@@ -101,7 +81,6 @@ var IsotopeItem = React.createClass({
 });
 
 
-
 module.exports = React.createClass({
 
 
@@ -112,18 +91,17 @@ module.exports = React.createClass({
 	},
 
 
-
 	render() {
 	
 		var Item = React.createClass({
-		
+
 			propTypes: {
 				title       : React.PropTypes.string,
 				description : React.PropTypes.string,
 				image       : React.PropTypes.string
 		
 			},
-		
+
 			getDefaultProps() {
 				return {
 					title: 'Title',
@@ -135,10 +113,10 @@ module.exports = React.createClass({
 			
 				return (
 					<div style={{}}>
-						<img src={require(this.props.image)} style={{
+						<img src={this.props.image} style={{
 							display: 'block',
 							margin: 'auto',
-							height:'200px',
+							height:'100px'
 						}}/>
 						<h3>
 							{this.props.title}
@@ -167,23 +145,23 @@ module.exports = React.createClass({
 					<Isotope>
 						
 						<IsotopeItem>
-							<Item image='./images/beer.jpg' title="Ölprovning" description="Denna vecka är det tjeckisk öl som gäller" />
+							<Item image={require('./images/beer.jpg')} title="Ölprovning" description="Denna vecka är det tjeckisk öl som gäller" />
 						</IsotopeItem>
 
 						<IsotopeItem>
-							<Item image='./images/wine.jpg' title="Vinprovning" description="Röda viner provas. Utlovas pris för den som kan smaka skillnad mellan rött och vitt vin" />
+							<Item image={require('./images/wine.jpg')} title="Vinprovning" description="Röda viner provas. Utlovas pris för den som kan smaka skillnad mellan rött och vitt vin" />
 						</IsotopeItem>
 
 						<IsotopeItem>
-							<Item image='./images/wine.jpg' title="Vinprovning" description="Röda viner provas. Utlovas pris för den som kan smaka skillnad mellan rött och vitt vin" />
+							<Item image={require('./images/wine.jpg')} title="Vinprovning" description="Röda viner provas. Utlovas pris för den som kan smaka skillnad mellan rött och vitt vin" />
 						</IsotopeItem>
 
 						<IsotopeItem>
-							<Item image='./images/beer.jpg' title="Ölprovning" description="Denna vecka är det tjeckisk öl som gäller" />
+							<Item image={require('./images/beer.jpg')} title="Ölprovning" description="Denna vecka är det tjeckisk öl som gäller" />
 						</IsotopeItem>
 
 						<IsotopeItem>
-							<Item image='./images/whiskey.jpg' title="Ölprovning" description="Denna vecka är det tjeckisk öl som gäller" />
+							<Item image={require('./images/whiskey.jpg')} title="Ölprovning" description="Denna vecka är det tjeckisk öl som gäller" />
 						</IsotopeItem>
 
 
@@ -194,3 +172,7 @@ module.exports = React.createClass({
 		);
 	}
 });
+
+
+
+

@@ -1,6 +1,6 @@
 
 
-var React = require('react');
+import React from 'react';
 
 var Bootstrap = require('react-bootstrap');
 var SectionHeader = require('../../components/SectionHeader.js');
