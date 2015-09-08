@@ -10,13 +10,17 @@ var Button = Bootstrap.Button;
 var ButtonGroup = Bootstrap.ButtonGroup;
 var ButtonToolbar = Bootstrap.ButtonToolbar;
 var Input = Bootstrap.Input;
+var Thumbnail = Bootstrap.Thumbnail;
+
+import { Jumbotron } from 'react-bootstrap';
 
 var React = require('react');
 
 
-require('./isotope.less');
-
-
+/*
+var Isotope = require('../../components/isotope.js').Isotope;
+var IsotopeItem = require('../../components/isotope.js').IsotopeItem;
+*/
 
 
 var Isotope = React.createClass({
@@ -31,7 +35,7 @@ var Isotope = React.createClass({
 	componentDidMount() {
 		var self = this;
 
-		$('.grid').isotope({
+		$('.Isotope .grid').isotope({
 			// options
 			itemSelector: '.grid-item',
 			layoutMode: 'fitRows'
@@ -40,7 +44,8 @@ var Isotope = React.createClass({
 
 	render() {
 		var style = {
-			position: 'relative'
+			position: 'relative',
+			padding: '1em'
 			
 		}
 		return (
@@ -68,33 +73,25 @@ var IsotopeItem = React.createClass({
 	
 	getInitialState() {
 		return {
-			width: '50%',
-			height: '50%',
-			overflow: 'auto',
-			margin: 'auto',
-			position: 'absolute',
-			top: 0,
-			left: 0,
-			bottom: 0,
-			right:0		
-
 		};
 	},
 
 	render() {
 	
-		var itemStyle = {
-			border: '1px solid black',
+		var style = {
+			border: '2px solid rgb(240, 240, 240)',
+			//borderStyle: 'dashed',
+			borderRadius: '8px',
+			margin: '0.25em',
 			minWidth: '10px',	
 			minHeight: '10px',
-			width: '50%',
-			background: 'rgb(240, 240, 240)',
-			padding: '1em 1em 1em 1em'	,
+			background: 'transparent',
+			padding: '0.5em 0.5em 0.5em 0.5em'	,
 			overflow:'hidden'
-			
 		};
+
 		return (
-			<div className="grid-item" style={itemStyle}>
+			<div className="grid-item" style={style}>
 				<div style={this.props.style}>
 					{this.props.children}
 				</div>
@@ -104,7 +101,9 @@ var IsotopeItem = React.createClass({
 });
 
 
+
 module.exports = React.createClass({
+
 
 	getInitialState() {
 		return {
@@ -115,22 +114,82 @@ module.exports = React.createClass({
 
 
 	render() {
+	
+		var Item = React.createClass({
+		
+			propTypes: {
+				title       : React.PropTypes.string,
+				description : React.PropTypes.string,
+				image       : React.PropTypes.string
+		
+			},
+		
+			getDefaultProps() {
+				return {
+					title: 'Title',
+					description: 'Description'
+				}
+			},
+		
+			render() {
+			
+				return (
+					<div style={{}}>
+						<img src={require(this.props.image)} style={{
+							display: 'block',
+							margin: 'auto',
+							height:'200px',
+						}}/>
+						<h3>
+							{this.props.title}
+						</h3>
+						<p>
+							{this.props.description}
+						</p>								
+						<Button block >Boka</Button>&nbsp;
+					</div>
+				);
+			}
+		});
+
 		return (
-            <div >
-                <h1>Hello {this.props.name}</h1>
-                <p>This is rendered with a React JSX Component! yeah2</p>
-				<Isotope>
-					<IsotopeItem>
-						<Button>Hej</Button>
-					</IsotopeItem>
-					<IsotopeItem>
-						<img src={require('./images/wine.jpg')}/>
-					</IsotopeItem>
-					<IsotopeItem>
-						<img src={require('./images/beer.jpg')}/>
-					</IsotopeItem>
-				</Isotope>
-            </div>
+            <Grid >
+            	<Row>
+					<Grid>
+						<Jumbotron>
+							<h2>Aktuella events</h2>
+							<p>Boka nu!</p>
+						</Jumbotron>	
+					</Grid>
+		
+            	</Row>
+				<Row>
+					<Isotope>
+						
+						<IsotopeItem>
+							<Item image='./images/beer.jpg' title="Ölprovning" description="Denna vecka är det tjeckisk öl som gäller" />
+						</IsotopeItem>
+
+						<IsotopeItem>
+							<Item image='./images/wine.jpg' title="Vinprovning" description="Röda viner provas. Utlovas pris för den som kan smaka skillnad mellan rött och vitt vin" />
+						</IsotopeItem>
+
+						<IsotopeItem>
+							<Item image='./images/wine.jpg' title="Vinprovning" description="Röda viner provas. Utlovas pris för den som kan smaka skillnad mellan rött och vitt vin" />
+						</IsotopeItem>
+
+						<IsotopeItem>
+							<Item image='./images/beer.jpg' title="Ölprovning" description="Denna vecka är det tjeckisk öl som gäller" />
+						</IsotopeItem>
+
+						<IsotopeItem>
+							<Item image='./images/whiskey.jpg' title="Ölprovning" description="Denna vecka är det tjeckisk öl som gäller" />
+						</IsotopeItem>
+
+
+					</Isotope>
+				</Row>
+            </Grid>
 
 		);
 	}

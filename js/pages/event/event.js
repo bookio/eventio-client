@@ -1,16 +1,5 @@
 /*
-import React from 'react';
 
-require('./Test.less');
-
-let Test = React.createClass({ 
-
-  render() {
-    return(<div className="Test"> Welcome to test</div>);
-  }
-});
-
-export default Test;
 
 */
 
