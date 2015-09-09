@@ -15,10 +15,11 @@ let App = React.createClass({
 		      <Nav navbar right>
 		        <NavItem eventKey={1} href='#/home'>Nyheter</NavItem>
 		        <NavItem eventKey={2} href='#/event'>Nytt event</NavItem>
-		        <NavItem eventKey={3} href='#/events'>Kommande events</NavItem>
+		        <NavItem eventKey={3} href='#/events'>Events</NavItem>
 		        <NavItem eventKey={4} href='#/isotope'>Isotope</NavItem>
 		        <NavItem eventKey={5} href='#/login'>Log in</NavItem>
-		        <NavItem eventKey={5} href='#/material'>Material	</NavItem>
+		        <NavItem eventKey={6} href='#/material'>Material	</NavItem>
+		        <NavItem eventKey={7} href='#/users'>Users</NavItem>
 		      </Nav>
 		    </CollapsibleNav>
 		  </Navbar>
@@ -33,7 +34,7 @@ let App = React.createClass({
 
 let routes = (  
   <Route name="app" path="/" handler={App}>
-  	<DefaultRoute handler={require('./pages/material/material.js')} />  
+  	<DefaultRoute handler={require('./pages/events/events.js')} />  
   	
     <Route name="events"   path="/events"   handler={require('./pages/events/events.js')}/>
     <Route name="event"    path="/event"    handler={require('./pages/event/event.js')}/>
@@ -41,6 +42,8 @@ let routes = (
     <Route name="isotope"  path="/isotope"  handler={require('./pages/isotope/isotope.js')}/>
     <Route name="login"    path="/login"    handler={require('./pages/login/login.js')}/>
     <Route name="material"    path="/material"    handler={require('./pages/material/material.js')}/>
+    <Route name="users"    path="/users"    handler={require('./pages/users/users.js')}/>
+    <Route name="reservation"    path="/reservation"    handler={require('./pages/reservation/reservation.js')}/>
     
   </Route>
 );

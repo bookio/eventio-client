@@ -1,96 +1,63 @@
 import React from 'react';
-var ui = require('react-bootstrap');
+import {Glyphicon, Input, Jumbotron, Row, Col, Grid, Thumbnail, Button} from 'react-bootstrap';
+
+
+
+var EventCard = React.createClass({
+	
+	
+	
+	render() {
+		return (
+				<Thumbnail src={this.props.image} >
+					<h3>{this.props.title}</h3>
+					<p>{this.props.description}</p>
+					<p>
+						<Button block href="#/reservation">Boka</Button>
+					</p>
+				</Thumbnail>
+		);
+		
+	}
+});
+
 
 module.exports = React.createClass({ 
+	
 	
 	
 	render() {
 		var image = require('./images/wine.jpg');
 		var beer = require('./images/beer.jpg');
 		
+		var searchButton = <div><Glyphicon glyph='search' /></div>
+		
 		return (
 			<div>
-			<ui.Grid>
-				<ui.Jumbotron>
-					<h2>Aktuella events</h2>
-					<p>Boka nu!</p>
-				</ui.Jumbotron>	
-			</ui.Grid>
 
-			
-			<ui.Grid>
-				<ui.Row>
-					<ui.Col xs={6} md={4}>
-						<ui.Thumbnail src={image} >
-							<h3>Vinprovning</h3>
-							<p>Nu en vinprovning på Österlen med spännande röda viner</p>
-							<p>
-								<ui.Button block >Boka</ui.Button>&nbsp;
-							</p>
-						</ui.Thumbnail>
-					</ui.Col>
-	
-					<ui.Col xs={6} md={4}>
-						<ui.Thumbnail src={require('./images/beer.jpg')} >
-							<h3>Ölprovning</h3>
-							<p>Udda tjeckiska ölsorter kommer att smakas av denna Torsdag</p>
-							<p>
-								<ui.Button block >Boka</ui.Button>&nbsp;
-							</p>
-						</ui.Thumbnail>
-					</ui.Col>
-	
-					<ui.Col xs={6} md={4}>
-						<ui.Thumbnail src={require('./images/whiskey.jpg')} alt='242x200'>
-							<h3>Whiskey!</h3>
-							<p>Nu finns äntligen whiskey-provning på programmet. Välkommen den 17/12!</p>
-							<p>
-								<ui.Button block >Boka</ui.Button>&nbsp;
-							</p>
-						</ui.Thumbnail>
-					</ui.Col>
-					
-				</ui.Row>
-			</ui.Grid>
+			<Grid>
+				<Row>
+					<Input type='text' placeholder='Sök' label='' help='' hasFeedback ref='input'>
+						
+					</Input>
+				</Row>
+			</Grid>			
 
-			<ui.Grid>
-				<ui.Jumbotron>
-					<h2>Visar nu i annat format</h2>
-					<p>Kanske detta är snyggare...</p>
-				</ui.Jumbotron>	
-			</ui.Grid>
+			<Grid>
 
+				<Row>
+					<Col xs={6} md={4}>
+						<EventCard title = 'Vinprovning' description = 'Nu en vinprovning på Österlen med spännande röda viner' image = {require('./images/wine.jpg')}/> 
+					</Col>
+					<Col xs={6} md={4}>
+						<EventCard title = 'Ölprovning' description = 'Udda tjeckiska ölsorter kommer att smakas av denna Torsdag' image = {require('./images/beer.jpg')}/> 
+					</Col>
+					<Col xs={6} md={4}>
+						<EventCard title = 'Whiskey' description = 'Nu finns äntligen whiskey-provning på programmet. Välkommen den 17/12!' image = {require('./images/whiskey.jpg')}/> 
+					</Col>
+				</Row>
+			</Grid>
 
-			<ui.Grid>
-				<ui.Row>
-						<ui.Thumbnail src={require('./images/wine.jpg')} alt='242x200'>
-							<h3>Vinprovning</h3>
-							<p>Nu en vinprovning på Österlen med spännande röda viner</p>
-							<p>
-								<ui.Button block >Boka</ui.Button>&nbsp;
-							</p>
-						</ui.Thumbnail>
-				</ui.Row>
-				<ui.Row>
-						<ui.Thumbnail src={require('./images/beer.jpg')} alt='242x200'>
-							<h3>Ölprovning</h3>
-							<p>Udda tjeckiska ölsorter kommer att smakas av denna Torsdag</p>
-							<p>
-								<ui.Button block >Boka</ui.Button>&nbsp;
-							</p>
-						</ui.Thumbnail>
-				</ui.Row>
-				<ui.Row>
-					<ui.Thumbnail src={require('./images/whiskey.jpg')} alt='242x200'>
-						<h3>Whiskey!</h3>
-						<p>Nu finns äntligen whiskey-provning på programmet. Välkommen den 17/12!</p>
-						<p>
-							<ui.Button block >Boka</ui.Button>&nbsp;
-						</p>
-					</ui.Thumbnail>
-					
-				</ui.Row>
-			</ui.Grid>
 			</div>
 
 

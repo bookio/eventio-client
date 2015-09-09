@@ -53,7 +53,8 @@ var App = React.createClass({
 
 	render() {
 
-	
+		console.log(this.props);
+		
 		var btnSize = 'large';
 		
 		var gridStyle = {
@@ -66,6 +67,7 @@ var App = React.createClass({
 			
 		};
 		
+		
 		return (
 			<div>
 				<Grid>
@@ -73,7 +75,7 @@ var App = React.createClass({
 						<h1>Boka nu!</h1>
 						<p>Vi har nu en hel del nya events på gång.</p>
 						<p>Kom och smaka på öl, vin och whiskey med era nära och kära.</p>
-						<p><ui.Button href="#/events" bsStyle='primary'>Visa mer</ui.Button></p>
+						<p><ui.Button href="#/events"  bsStyle='primary'>Visa mer</ui.Button></p>
 					</ui.Jumbotron>	
 				</Grid>
 				

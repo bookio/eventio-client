@@ -1,10 +1,12 @@
+var sprintf = require('./sprintf.js');
+var gopher  = require('./gopher.js');
+
+
 (function() {
 
 
 
-	Model = {};
-
-	var gopher = Gopher;
+	var Model = {};
 
 	////////////////////////////////////////////////////////////////////////////
 
@@ -304,5 +306,5 @@
 	Model.initialize();
 	console.log('model.js loaded...');
 
-
+	module.exports = Model;
 })();

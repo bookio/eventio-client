@@ -8,34 +8,10 @@ import React from 'react';
 var SectionHeader = require('../../components/SectionHeader.js');
 
 import {Panel, Modal, Label, Well, Tabs, Tab, SplitButton, MenuItem, Jumbotron, Grid, Row, Col, Button, ButtonGroup, ButtonToolbar, Input, Thumbnail} from 'react-bootstrap';
-
 import {sprintf} from '../../tools/tools.js';
 
-require('./event.less');
 
 
-
-var TabPrice = React.createClass({
-
-	getInitialState() {
-		return {
-			value: 1
-		}
-	},
-	
-	render() {
-		return (
-			<div style={{minHeight:'20em'}}>
-				<Grid style={{textAlign: 'left'}}>
-					
-					<Row>
-						<Input type='text' value={this.state.value} placeholder='Namn' label='&nsp' help='Ange namnet på ditt event' hasFeedback ref='input' onChange={this.handleChange} />
-					</Row>
-				</Grid>
-			</div>
-		);
-	}
-});
 
 
 var Separator = React.createClass({
@@ -58,6 +34,7 @@ var Separator = React.createClass({
 	}
 
 });
+
 
 var App = React.createClass({
 
@@ -223,22 +200,6 @@ var App = React.createClass({
 });
 
 
-/*	
-
-					<Row>
-						<div className="tabs">
-							<Tabs style={{textAlign:'center'}} bsStyle='pills' defaultActiveKey={1} animation={false}>
-								<Tab eventKey={1} title='Pris'>
-									<TabPrice>
-									</TabPrice>
-								</Tab>
-								<Tab eventKey={2} title='Plats'>Tab 2 content</Tab>
-								<Tab eventKey={3} title='Datum och tid'>Tab 3 content</Tab>
-								<Tab eventKey={4} title='Platser'>Tab 3 content</Tab>
-							</Tabs>
-						</div>
-  					</Row>
-*/	
 
 
 module.exports = App;

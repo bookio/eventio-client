@@ -9,7 +9,8 @@ import {sprintf, Base64} from './tools.js';
 	
 	Module.user = null;
 	Module.client = null;
-	Module.sessionID = ''; //$.isString($.cookie('sid')) ? $.cookie('sid') : '';
+	Module.sessionID = localStorage.sessionID; //''; //$.isString($.cookie('sid')) ? $.cookie('sid') : '';
+	console.log('Stored sessionID', Module.sessionID);
 	
 	var loginComplete = function(data) {
 		Module.client = data.client;
