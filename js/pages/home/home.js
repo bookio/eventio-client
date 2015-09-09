@@ -79,6 +79,10 @@ var App = React.createClass({
 					</ui.Jumbotron>	
 				</Grid>
 				
+				<Button>
+					<img style={{height:'2em'}} src={require('./images/plus.svg')}/>
+				</Button>
+				
 
 			</div>
 
