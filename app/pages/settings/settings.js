@@ -79,10 +79,20 @@ module.exports = React.createClass({
 			<div>
 				<Grid>
 					<ListGroup>
+
 					    <ListGroupItem href="#/users">
-					    	<ListGroupItemText text='Användare'/>
-					    	<ListGroupItemIcon/>
+					    	<div style={{display:'table'}}>
+					    		<div style={{width:'100%', display:'table-cell', verticalAlign:'middle'}}>
+					    			<h6><strong>HEJ</strong></h6>
+					    			<p>KALLE</p>
+					    		</div>
+					    		<div style={{width:'2em', display:'table-cell', verticalAlign:'middle'}}>
+									<img style={{height:'2.75em'}} src={require('./images/chevron-right.svg')}/>
+					    		</div>
+					    	</div>
 					    </ListGroupItem>
+
+
 					    <ListGroupItem href="#/material">
 						    <ListGroupItemText text='Prova material-ui'/>
 					    	<ListGroupItemIcon/>

@@ -9,7 +9,7 @@ var Model = require('../../tools/model.js');
 require('./users.less');
 
 
-
+/*
 var UserListItem = React.createClass({
 
 
@@ -26,7 +26,7 @@ var UserListItem = React.createClass({
 	render() {
 
 		return (
-		    <ListGroupItem key={this.props.key}>
+		    <ListGroupItem>
 			    {this.props.user.name}
 		    </ListGroupItem>
 		);		
@@ -34,7 +34,7 @@ var UserListItem = React.createClass({
 
 });
 
-
+*/
 
 var UserList = React.createClass({
 
@@ -70,10 +70,10 @@ var UserList = React.createClass({
 	render() {
 		console.log('UserList.render');
 
-		var userNodes = this.props.users.map(function(user) {
+		var userNodes = this.props.users.map(function(user, index) {
 		
 			return (
-				<ListGroupItem key = {user.id}>
+				<ListGroupItem key={index}>
 					{user.name}
 				</ListGroupItem>
 			);

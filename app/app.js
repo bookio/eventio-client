@@ -19,6 +19,7 @@ let App = React.createClass({
 		        <NavItem eventKey={7} href='#/users'>Användare</NavItem>
 		        <NavItem eventKey={7} href='#/settings'>Inställningar</NavItem>
 		        <NavItem eventKey={5} href='#/login'>Logga in</NavItem>
+		        <NavItem eventKey={5} href='#/masonry'>Masonry</NavItem>
 		      </Nav>
 		    </CollapsibleNav>
 		  </Navbar>
@@ -44,6 +45,7 @@ let routes = (
     <Route name="users"    path="/users"    handler={require('./pages/users/users.js')}/>
     <Route name="reservation"    path="/reservation"    handler={require('./pages/reservation/reservation.js')}/>
     <Route name="settings"    path="/settings"    handler={require('./pages/settings/settings.js')}/>
+    <Route name="masonry"    path="/masonry"    handler={require('./pages/masonry/masonry.js')}/>
     
   </Route>
 );
