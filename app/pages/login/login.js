@@ -85,9 +85,6 @@ module.exports = React.createClass({
 			
 				<Grid style={{maxWidth:'25em'}}>
 					<Row>
-						<h2>Logga in</h2>
-					</Row>
-					<Row>
 						<Input type='text' value={this.state.username} placeholder='Användarnamn' label='' help='' hasFeedback ref='input' onChange={this.onChangeUsername} />
 					</Row>
 					<Row>

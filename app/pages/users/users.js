@@ -73,18 +73,20 @@ var UserList = React.createClass({
 		var userNodes = this.props.users.map(function(user) {
 		
 			return (
-				<li key = {user.id}>
+				<ListGroupItem key = {user.id}>
 					{user.name}
-				</li>
+				</ListGroupItem>
 			);
 		});
       
 		console.log(userNodes);
 		
 		return (
-		    <ol>
-				{userNodes}
-		    </ol>
+			<Grid>
+			    <ListGroup>
+					{userNodes}
+			    </ListGroup>
+		    </Grid>
 		);		
 	}
 
