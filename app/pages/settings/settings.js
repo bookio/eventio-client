@@ -2,8 +2,7 @@
 
 import React from 'react';
 import {Label, ListGroup, ListGroupItem, Panel, ButtonGroup, Glyphicon, Input, Jumbotron, Row, Col, Grid, Thumbnail, Button} from 'react-bootstrap';
-
-
+import {ListView, ListViewItem} from '../../components/listview.js';
 
 
 var ListGroupItemContent = React.createClass({
@@ -63,6 +62,120 @@ var ListGroupItemIcon = React.createClass({
 	}
 
 });
+/*
+
+
+var ListView = React.createClass({
+
+	render() {
+
+		return (
+	    	<div className='list-group' style={{}}>
+	    		{this.props.children}
+	    	</div>
+		);
+	}
+	
+});
+
+
+var ListViewItem = React.createClass({
+
+
+	getDefaultProps() {
+		return {
+			href: '',
+			glyphLeft: '',
+			glyphRight: '',
+			glyphSize: '1.5em'
+			
+		}
+	},
+	
+	render() {
+	
+		self = this;
+		
+		var leftPart = function() {
+		
+			return (
+					<div className={"glyphicon glyphicon-"+self.props.glyphLeft} style={{paddingRight:'1em', fontSize:self.props.glyphSize, display:'table-cell', verticalAlign:'middle'}}>
+					</div>
+			);
+		}    
+		
+		var rightPart = function() {
+			return (
+					<div className={"glyphicon glyphicon-"+self.props.glyphRight} style={{paddingLeft:'1em', fontSize:self.props.glyphSize, display:'table-cell', verticalAlign:'middle'}}>
+					</div>
+			);
+		}    
+		
+		var middlePart = function() {
+			return (
+		    		<div style={{width:'100%', display:'table-cell', verticalAlign:'middle'}}>
+						{self.props.children}
+		    		</div>
+			);
+		}
+		
+		var content = function() {
+		
+			if (self.props.glyphLeft != '' && self.props.glyphRight != '') {
+				return (
+			    	<div style={{display:'table'}}>
+			    		{leftPart()}
+			    		{middlePart()}
+			    		{rightPart()}
+			    	</div>
+				);
+			}
+
+			if (self.props.glyphLeft != '') {
+				return (
+			    	<div style={{display:'table'}}>
+			    		{leftPart()}
+			    		{middlePart()}
+			    	</div>
+				);
+			}
+
+			if (self.props.glyphRight != '') {
+				return (
+			    	<div style={{display:'table'}}>
+			    		{middlePart()}
+			    		{rightPart()}
+			    	</div>
+				);
+			}
+
+			return (
+		    	<div style={{display:'table'}}>
+		    		{middlePart()}
+		    	</div>
+			);
+
+		}
+
+		if (this.props.href != '') {
+			return (
+			    <a className='list-group-item' href={this.props.href}>
+			    	{content()}
+			    </a>
+			);
+			
+		}
+
+		return (
+		    <span className='list-group-item'>
+		    	{content()}
+		    </span>
+		);
+	}
+	
+});
+
+*/
 
 module.exports = React.createClass({
 
@@ -76,39 +189,19 @@ module.exports = React.createClass({
 	render() {
 
 		return (
-			<div>
-				<Grid>
-					<ListGroup>
-
-					    <ListGroupItem href="#/users">
-					    	<div style={{display:'table'}}>
-					    		<div style={{width:'100%', display:'table-cell', verticalAlign:'middle'}}>
-					    			<h6><strong>HEJ</strong></h6>
-					    			<p>KALLE</p>
-					    		</div>
-					    		<div style={{width:'2em', display:'table-cell', verticalAlign:'middle'}}>
-									<img style={{height:'2.75em'}} src={require('./images/chevron-right.svg')}/>
-					    		</div>
-					    	</div>
-					    </ListGroupItem>
+			<Grid>
+				<ListView>
+				    <ListViewItem title='Logga in' href='#/login' glyphRight='chevron-right'/>
+				    <ListViewItem title='Användare' href='#/users' glyphRight='chevron-right'/>
+				    <ListViewItem title='Events' href='#/events' glyphRight='chevron-right'/>
+				    <ListViewItem title='Masonry' subtitle='Prova på en variant av Isotope' href='#/masonry' glyphRight='chevron-right'/>
+				    <ListViewItem title='Material-UI' subtitle='Se ett exempel på hur Material-UI ser ut' href='#/material' glyphRight='chevron-right'/>
 
 
-					    <ListGroupItem href="#/material">
-						    <ListGroupItemText text='Prova material-ui'/>
-					    	<ListGroupItemIcon/>
-					    </ListGroupItem>
-					    <ListGroupItem href="#/login">
-						    <ListGroupItemText text='Logga in'/>
-					    	<ListGroupItemIcon/>
-					    </ListGroupItem>
-					    <ListGroupItem href="#/events">
-						    <ListGroupItemText text='Visa alla events'/>
-					    	<ListGroupItemIcon/>
-					    </ListGroupItem>
-					</ListGroup>
-				</Grid>
-				
-			</div>
+				</ListView>
+
+
+			</Grid>
 
 		);
 	}

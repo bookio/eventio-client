@@ -54,6 +54,7 @@ var App = React.createClass({
 
 	render() {
 
+		var self = this;
 		
 		var gridStyle = {
 			//border: '1px solid yellow',
@@ -67,9 +68,10 @@ var App = React.createClass({
 		
 
 		function buttonClick(event) {
+			console.log(self.context);
 			console.log('handling back button press');
 			event.preventDefault();
-			window.history.back();
+//			window.history.back();
 		}
 		
 		var html = (
@@ -123,12 +125,12 @@ var App = React.createClass({
 						<Panel header={sprintf('Öppen för %s', 'reservation!')}>
 							<Grid style = {gridStyle}>
 								<Row style = {rowStyle} >
-									<Input type='radio' value={this.state.value} label='Nu' hasFeedback ref='input' onChange={this.handleChange} />
+									<Input type='radio' name="foo" value={this.state.value} label='Nu' hasFeedback ref='input' onChange={this.handleChange} />
 								</Row>
 								<Row>
 									<Grid>
 									<Row>
-										<Input type='radio' value={this.state.value} label='Inte förrän' hasFeedback ref='input' onChange={this.handleChange} />
+										<Input type='radio' name="foo" value={this.state.value} label='Inte förrän' hasFeedback ref='input' onChange={this.handleChange} />
 									</Row>
 									<Row>
 										<div style={{width: '90%'}}>
@@ -151,7 +153,7 @@ var App = React.createClass({
 									<Grid>
 									<Row>
 										<Col md={8}>
-									<Input type='radio' value={this.state.value} label='När eventet startas' hasFeedback ref='input' onChange={this.handleChange} />
+											<Input type='radio' name="foo2" value={this.state.value} label='När eventet startas' hasFeedback ref='input' onChange={this.handleChange} />
 										</Col>
 									</Row>
 									</Grid>
@@ -160,7 +162,7 @@ var App = React.createClass({
 									<Grid>
 										<Row>
 											<Col md={2}>
-												<Input type='radio' value={this.state.value} label='Tillåt bokningar' hasFeedback ref='input' onChange={this.handleChange} />
+												<Input type='radio' name = "foo2" value={this.state.value} label='Tillåt bokningar' hasFeedback ref='input' onChange={this.handleChange} />
 											</Col>
 											<Col md={6}>
 												<SplitButton title='6 timmar innan' pullRight id='split-button-pull-right'>

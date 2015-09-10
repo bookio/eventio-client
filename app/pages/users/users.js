@@ -2,11 +2,12 @@
 
 import React from 'react';
 import {ListGroup, ListGroupItem, Panel, Modal, Label, Well, Tabs, Tab, SplitButton, MenuItem, Jumbotron, Grid, Row, Col, Button, ButtonGroup, ButtonToolbar, Input, Thumbnail} from 'react-bootstrap';
+import {ListView, ListViewItem} from '../../components/listview.js';
 
 var sprintf = require('../../tools/sprintf.js');
 var Model = require('../../tools/model.js');
 
-require('./users.less');
+
 
 
 /*
@@ -73,9 +74,8 @@ var UserList = React.createClass({
 		var userNodes = this.props.users.map(function(user, index) {
 		
 			return (
-				<ListGroupItem key={index}>
-					{user.name}
-				</ListGroupItem>
+				<ListViewItem key={index} title={user.name} glyphRight='chevron-right'>
+				</ListViewItem>
 			);
 		});
       
@@ -83,9 +83,9 @@ var UserList = React.createClass({
 		
 		return (
 			<Grid>
-			    <ListGroup>
+			    <ListView>
 					{userNodes}
-			    </ListGroup>
+			    </ListView>
 		    </Grid>
 		);		
 	}
@@ -113,6 +113,7 @@ module.exports = React.createClass({
 	},
 	
 	componentDidMount() {
+		
 		console.log('componentDidMount');
 	
 		var self = this;
