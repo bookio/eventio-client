@@ -5,14 +5,14 @@ var Masonry = require('react-masonry-component')(React);
 
 
 
-var NewCard = React.createClass({
+var XNewCard = React.createClass({
 	
 	render() {
 		return (
 			<div style={{paddingLeft:'1em', paddingRight:'1em', width:'300px'}}>
 				<Thumbnail style={{border:'4px dashed rgb(240,240,240)', borderRadius:'20px'}}>
-					<h4>Skapa nytt event</h4>
-					<Button block href="#/event"><Glyphicon glyph='plus'/></Button>
+					<h4>Skapa nytt eventXX</h4>
+					<Button block href="#/event">Skapa nytt event</Button>
 				</Thumbnail>
 			</div>
 		);
@@ -20,6 +20,28 @@ var NewCard = React.createClass({
 	}
 });
 
+
+var NewCard = React.createClass({
+	
+	render() {
+		return (
+			<div style={{paddingLeft:'1em', paddingRight:'1em', width:'300px'}}>
+				<Thumbnail  >
+					<div style={{border:'4px dashed rgb(240,240,240)', borderRadius:'20px', height:'200px'}}>
+					</div>
+					<h4>Skapa nytt event</h4>
+					<p>
+						Lorem ipsum dolor sit amet, aperiri volutpat partiendo eos eu.
+					</p>
+					<p>
+						<Button block href="#/event"><Glyphicon glyph='plus'/></Button>
+					</p>
+				</Thumbnail>
+			</div>
+		);
+		
+	}
+});
 
 var EventCard = React.createClass({
 	
@@ -76,7 +98,7 @@ module.exports = React.createClass({
 		var events = [
 			{
 				title: 'Vinprovning',
-				description: 'Lorem ipsum dolor sit amet, delenit debitis splendide mei id.',
+				description: 'Lorem ipsum dolor sit amet, duo an veri aperiam feugait, usu purto blandit ad. Iudico delenit gloriatur eu his, molestie democritum referrentur eum ex viris.',
 				image: require('./images/wine.jpg')
 			},
 			{

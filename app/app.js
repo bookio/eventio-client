@@ -9,11 +9,11 @@ let App = React.createClass({
   render() {
     return (
  
-  
+ 
       <div >
 		  <Navbar  brand='eventio.com' toggleNavKey={0} style={{borderRadius:'0px'}}>
 		  
-		    <CollapsibleNav eventKey={0}> {/* This is the eventKey referenced */}
+		    <CollapsibleNav eventKey={0}>
 		      <Nav navbar right>
 		        <NavItem eventKey={1} href='#/home'>Nyheter</NavItem>
 		        <NavItem eventKey={3} href='#/events'>Events</NavItem>
@@ -22,11 +22,13 @@ let App = React.createClass({
 		      </Nav>
 		    </CollapsibleNav>
 		  </Navbar>
-        {/* this is the importTant part */}
+
+		  
 		<div style={{padding:'1em'}}>
 	        <RouteHandler/>
 	    </div>
       </div>
+      
     );
   }
 });
