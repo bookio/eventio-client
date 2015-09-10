@@ -17,10 +17,6 @@ import {sprintf, Base64} from './tools.js';
 		Module.user = data.user;
 		Module.sessionID = data.sid;
 	
-	//	if (!Module.user.guest) {
-	//		$.cookie('sid', Module.sessionID);
-	//	}
-	
 		console.log('Session ID:%s', data.sid);
 	}
 	

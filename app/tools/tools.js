@@ -36,6 +36,7 @@ module.exports.Base64 = {
 	
 	    }
 	
+	
 	    return output;
 	},
 	

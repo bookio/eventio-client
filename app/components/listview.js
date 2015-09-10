@@ -22,7 +22,7 @@ module.exports.ListViewItem = React.createClass({
 			href: '',
 			glyphLeft: '',
 			glyphRight: '',
-			glyphSize: '1.5em',
+			glyphSize: '1.6em',
 			title: '',
 			subtitle: ''
 			

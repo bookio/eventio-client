@@ -4,6 +4,7 @@ import {Glyphicon, Input, Jumbotron, Row, Col, Grid, Thumbnail, Button} from 're
 var Masonry = require('react-masonry-component')(React);
 
 
+
 var NewCard = React.createClass({
 	
 	render() {

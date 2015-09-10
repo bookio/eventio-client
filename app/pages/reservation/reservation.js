@@ -111,20 +111,16 @@ module.exports = React.createClass({
 							</Panel>
 						</Row>
 
-						<Row style={{textAlign:'center'}}>
-							<Button bsStyle='success' onClick={buttonClick} style={{minWidth: '100px'}} >Skapa nytt event</Button>
-							
-						</Row>
 		
 						<Row style={{textAlign:'center'}}>
-							<Button style={{textAlign:'center',maxWidth:'100px'}} block bsStyle='primary' onClick={this.props.onSubmit} >Boka</Button>
+							<Button style={{width:'10em'}} bsStyle='primary' onClick={this.props.onSubmit} >Boka</Button>
 						</Row>
 					</Grid>
 				);
 			}
 		});
 		
-//				
+
 		return (
 
 			<form>

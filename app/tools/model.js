@@ -146,6 +146,7 @@ import gopher from './gopher.js';
 			return request;
 		};
 
+
 		model.save = function(item) {
 			return item.id ? model.update.apply(undefined, arguments) : model.add.apply(undefined, arguments);
 		}

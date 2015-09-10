@@ -51,8 +51,6 @@ module.exports = React.createClass({
 		console.log(event, event.target);	
 		var user = this.state.user;
 		user.name = event.target.value;
-		//console.log(event.target.value);
-		//console.log(event.target);
 		this.setState({user: user});
 	},
 

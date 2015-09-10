@@ -35,8 +35,6 @@ var UserList = React.createClass({
 	},
 	
 	render() {
-		console.log('UserList.render');
-
 		var userNodes = this.props.users.map(function(user, index) {
 		
 			return (
