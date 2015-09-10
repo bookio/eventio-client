@@ -9,7 +9,7 @@ var NewCard = React.createClass({
 	
 	render() {
 		return (
-			<div style={{padding:'1em', width:'300px'}}>
+			<div style={{paddingLeft:'1em', paddingRight:'1em', width:'300px'}}>
 				<Thumbnail style={{border:'4px dashed rgb(240,240,240)', borderRadius:'20px'}}>
 					<h4>Skapa nytt event</h4>
 					<Button block href="#/event"><Glyphicon glyph='plus'/></Button>
@@ -27,7 +27,7 @@ var EventCard = React.createClass({
 	
 	render() {
 		return (
-			<div style={{padding:'1em', width:'300px'}}>
+			<div style={{paddingLeft:'1em', paddingRight:'1em', width:'300px'}}>
 				<Thumbnail src={this.props.image} style={{}}>
 					<h4>{this.props.title}</h4>
 					<p>{this.props.description}</p>
@@ -76,17 +76,37 @@ module.exports = React.createClass({
 		var events = [
 			{
 				title: 'Vinprovning',
-				description: 'Nu en vinprovning på Österlen med spännande röda viner',
+				description: 'Lorem ipsum dolor sit amet, delenit debitis splendide mei id.',
 				image: require('./images/wine.jpg')
 			},
 			{
 				title: 'Ölprovning',
-				description: 'Ett antal tjeckiska ölsorter smakar vi av denna torsdag. Välkommen!',
+				description: 'Lorem ipsum dolor sit amet, eam tamquam delenit ne, usu.',
 				image: require('./images/beer.jpg')
 			},
 			{
 				title: 'Vinprovning',
-				description: 'Nu en vinprovning på Österlen med spännande röda viner',
+				description: 'Lorem ipsum dolor sit amet, et ius laudem adolescens consetetur, doctus euismod interesset eu sed. Vix wisi nihil quaestio cu.',
+				image: require('./images/wine.jpg')
+			},
+			{
+				title: 'Ölprovning',
+				description: 'Lorem ipsum dolor sit amet, eos detraxit referrentur id. His ex eius utinam fastidii, ex dolore feugiat laboramus eam, et nonumes verterem platonem nam. Quod epicurei cotidieque quo cu, hinc.',
+				image: require('./images/beer.jpg')
+			},
+			{
+				title: 'Vinprovning',
+				description: 'Lorem ipsum dolor sit amet, vis nibh malis cu, convenire consetetur disputando in sit. Qui probatus electram complectitur an, qui.',
+				image: require('./images/wine.jpg')
+			},
+			{
+				title: 'Ölprovning',
+				description: 'Lorem ipsum dolor sit amet, pri saepe mollis te, id.',
+				image: require('./images/beer.jpg')
+			},
+			{
+				title: 'Vinprovning',
+				description: 'Lorem ipsum dolor sit amet, eum aliquip scaevola ut, an nobis offendit complectitur nam. Pro te homero pertinacia, et his.',
 				image: require('./images/wine.jpg')
 			},
 			{
@@ -96,7 +116,7 @@ module.exports = React.createClass({
 			},
 			{
 				title: 'Whiskeyprovning',
-				description: 'Single Malt står på menyn.',
+				description: 'Lorem ipsum dolor sit amet, in sea decore petentium disputationi. Nonumes volumus eu vis. Semper iudicabit pri at, mea augue omittam eu, affert ridens omnesque has te. Idque saepe no quo, ex mea dicunt adipisci senserit. Qui in magna dolore.',
 				image: require('./images/whiskey.jpg')
 			}
 		];

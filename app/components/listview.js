@@ -18,6 +18,7 @@ module.exports.ListViewItem = React.createClass({
 
 
 	getDefaultProps() {
+	
 		return {
 			href: '',
 			glyphLeft: '',
