@@ -1,14 +1,11 @@
 
 
 import React from 'react';
-import {Panel, Modal, Label, Well, Tabs, Tab, SplitButton, MenuItem, Jumbotron, Grid, Row, Col, Button, ButtonGroup, ButtonToolbar, Input, Thumbnail} from 'react-bootstrap';
+import {Glyphicon, Panel, Modal, Label, Well, Tabs, Tab, SplitButton, MenuItem, Jumbotron, Grid, Row, Col, Button, ButtonGroup, ButtonToolbar, Input, Thumbnail} from 'react-bootstrap';
 
 //var sprintf = require('../../tools/sprintf.js');
 import {sprintf} from '../../tools/tools.js';
 
-
-
-require('./login.less');
 
 
 
@@ -92,11 +89,11 @@ module.exports = React.createClass({
 					</Row>
 
 					<Row style={{textAlign:'center'}}>
-							<Button onClick={this.login} bsStyle='primary' style={{width:'100%', padding:'1em'}}>
-								<img style={{width:'2em', height:'2em'}} src={require('./images/login.png')}/>
-							</Button>
+						<div onClick={this.login} style={{}}>	
+							<Glyphicon  glyph='play-circle'  style={{cursor:'pointer', fontSize:'3em'}}/>
+						</div>
 					</Row>
-
+					
 
 				</Grid>
 			</div>
@@ -106,5 +103,14 @@ module.exports = React.createClass({
 	}
 
 });
+
+
+					/*
+					<Row style={{textAlign:'center'}}>
+							<Button onClick={this.login} bsStyle='primary' style={{width:'100%', padding:'1em'}}>
+								<img style={{width:'2em', height:'2em'}} src={require('./images/login.png')}/>
+							</Button>
+					</Row>
+					*/
 
 

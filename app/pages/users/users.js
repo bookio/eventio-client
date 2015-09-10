@@ -9,34 +9,6 @@ var Model = require('../../tools/model.js');
 
 
 
-
-/*
-var UserListItem = React.createClass({
-
-
-	componentWillMount() {
-	},
-	
-	componentDidMount() {
-	},
-
-	componentDidUpdate(prevProps, prevState) {
-	},
-	
-	
-	render() {
-
-		return (
-		    <ListGroupItem>
-			    {this.props.user.name}
-		    </ListGroupItem>
-		);		
-	}
-
-});
-
-*/
-
 var UserList = React.createClass({
 
 	getInitialState() {
@@ -51,21 +23,15 @@ var UserList = React.createClass({
 	},
   
   	componentWillMount() {
-		console.log('UserList.componentWillMount');
 	},
 	
 	componentDidMount() {
-		console.log('UserList.componentDidMount');
 	},
 
 	componentDidUpdate(prevProps, prevState) {
-		console.log('UserList.componentDidUpdate');
 	},
 	
 	componentWillUnmount() {
-		console.log('UserList.componentWillUnmount');
-		this.setState(this.getInitialState());
-		
 	},
 	
 	render() {
@@ -74,7 +40,7 @@ var UserList = React.createClass({
 		var userNodes = this.props.users.map(function(user, index) {
 		
 			return (
-				<ListViewItem key={index} title={user.name} glyphRight='chevron-right'>
+				<ListViewItem key={index} title={user.name} glyphRight='chevron-right' href={sprintf('#/user/%s', user.id)}>
 				</ListViewItem>
 			);
 		});
@@ -99,23 +65,19 @@ module.exports = React.createClass({
 
 	
 	getInitialState() {
-		return {users:[{id:1, name:'MEG'}, {id:2, name:'olle'}]};
+		return {users:[]};
 	},
 	
 	
 	componentWillUnmount() {
-		console.log('componentWillUnmount');
 		
 	},
 	
 	componentWillMount() {
-		console.log('componentWillMount');
 	},
 	
 	componentDidMount() {
 		
-		console.log('componentDidMount');
-	
 		var self = this;
 		var request = Model.Users.fetch();
 		
@@ -131,14 +93,12 @@ module.exports = React.createClass({
 	},
 
 	componentDidUpdate(prevProps, prevState) {
-		console.log('componentDidUpdate');
 	},
 	
 	
 	render() {
-		console.log('render');
 		return (
-			<UserList key = {2344} users = {this.state.users} />
+			<UserList users = {this.state.users} />
 		);
 	}
 

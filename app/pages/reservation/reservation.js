@@ -110,9 +110,14 @@ module.exports = React.createClass({
 								<Input style={{height:'6em'}} type='textarea' placeholder='Övrig information' label='' help='' hasFeedback ref='input'  />
 							</Panel>
 						</Row>
+
+						<Row style={{textAlign:'center'}}>
+							<Button bsStyle='success' onClick={buttonClick} style={{minWidth: '100px'}} >Skapa nytt event</Button>
+							
+						</Row>
 		
-						<Row>
-							<Button block bsStyle='primary' onClick={this.props.onSubmit} >Boka</Button>
+						<Row style={{textAlign:'center'}}>
+							<Button style={{textAlign:'center',maxWidth:'100px'}} block bsStyle='primary' onClick={this.props.onSubmit} >Boka</Button>
 						</Row>
 					</Grid>
 				);

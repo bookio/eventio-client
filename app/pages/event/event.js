@@ -71,17 +71,13 @@ var App = React.createClass({
 			console.log(self.context);
 			console.log('handling back button press');
 			event.preventDefault();
-//			window.history.back();
+			window.history.back();
 		}
 		
 		var html = (
-			<div className='event-page'>
-			
-				<div id="modal">
-				</div>
 				<Grid>
 					<Row>
-						<h1>Nytt event</h1>
+						<h4>Nytt event</h4>
 					</Row>
 					<Row>
 						<Input type='text' value={this.state.value} placeholder='Namn' label='' help='' hasFeedback ref='input' onChange={this.handleChange} />
@@ -186,14 +182,11 @@ var App = React.createClass({
 
 					
 					<Row style={{textAlign:'center'}}>
-						<p/>
 						<Button bsStyle='success' onClick={buttonClick} style={{minWidth: '100px'}} >Skapa nytt event</Button>
-						<p/>
 						
 					</Row>
 	
 				</Grid>
-			</div>
 		);
 
 		return html;

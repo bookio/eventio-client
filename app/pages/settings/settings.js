@@ -190,6 +190,14 @@ module.exports = React.createClass({
 
 		return (
 			<Grid>
+				<Panel>
+					<h5>
+						Detta är egentligen inte några inställningar utan mer en plats för att komma åt olika sidor.
+					</h5>
+					<p>
+						Arbete pågår.
+					</p>
+				</Panel>
 				<ListView>
 				    <ListViewItem title='Logga in' href='#/login' glyphRight='chevron-right'/>
 				    <ListViewItem title='Användare' href='#/users' glyphRight='chevron-right'/>

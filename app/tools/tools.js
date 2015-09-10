@@ -1,6 +1,6 @@
 
 
-export const Base64 = {
+module.exports.Base64 = {
 
 	// private property
 	_keyStr : "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",
@@ -136,7 +136,7 @@ export const Base64 = {
 
 
 
-export const sprintf = function() {
+module.exports.sprintf = function() {
 
 
 	/**
@@ -237,7 +237,10 @@ export const sprintf = function() {
 }
 
 
-
+module.exports.isNumeric = function(obj) {
+	return $.isNumeric(obj);
+};
+    
 
 
 /*	

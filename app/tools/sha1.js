@@ -10,7 +10,7 @@
  *
  **/
 
-sha1 = function(msg) {
+module.exports.sha1 = function(msg) {
 
 	function rotate_left(n, s) {
 		var t4 = (n << s) | (n >>> (32 - s));

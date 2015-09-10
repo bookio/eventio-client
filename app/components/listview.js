@@ -1,10 +1,4 @@
-
-
 import React from 'react';
-import {Label, ListGroup, ListGroupItem, Panel, ButtonGroup, Glyphicon, Input, Jumbotron, Row, Col, Grid, Thumbnail, Button} from 'react-bootstrap';
-
-
-
 
 module.exports.ListView = React.createClass({
 

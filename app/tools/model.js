@@ -1,5 +1,5 @@
-var sprintf = require('./sprintf.js');
-var gopher  = require('./gopher.js');
+import {sprintf, isNumeric} from './tools.js';
+import gopher from './gopher.js';
 
 
 (function() {
@@ -66,7 +66,7 @@ var gopher  = require('./gopher.js');
 					var defer = $.Deferred();
 					var items = [];
 
-					for (key in model.cache) {
+					for (var key in model.cache) {
 						items.push(model.cache[key]);
 					}
 

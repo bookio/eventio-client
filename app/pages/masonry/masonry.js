@@ -4,6 +4,23 @@ import {Glyphicon, Input, Jumbotron, Row, Col, Grid, Thumbnail, Button} from 're
 var Masonry = require('react-masonry-component')(React);
 
 
+var NewCard = React.createClass({
+	
+	render() {
+		return (
+			<div style = {{width:'300px',padding:'1em',borderRadius:'10px', border:'4px dashed rgb(240,240,240)'}}>
+				<h4>Skapa nytt event</h4>
+				<p>{this.props.description}</p>
+				<p>
+					<Button block href="#/reservation">Skapa nytt event</Button>
+				</p>
+			</div>
+		);
+		
+	}
+});
+
+
 var EventCard = React.createClass({
 	
 	
@@ -37,6 +54,7 @@ var EventGallery = React.createClass({
         
         return (
             <Masonry className={'my-gallery-class'} elementType={'ul'} options={{}} disableImagesLoaded={false}>
+                <NewCard/>
                 {events}
             </Masonry>
         );

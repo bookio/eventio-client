@@ -4,6 +4,7 @@ import {Navbar,  CollapsibleNav, NavItem, Nav} from 'react-bootstrap';
 
 var Router = require('react-router'); //import {Router, DefaultRoute, Link, Route, RouteHandler } from 'react-router';
 
+
 let App = React.createClass({  
   render() {
     return (
@@ -14,12 +15,9 @@ let App = React.createClass({
 		    <CollapsibleNav eventKey={0}> {/* This is the eventKey referenced */}
 		      <Nav navbar right>
 		        <NavItem eventKey={1} href='#/home'>Nyheter</NavItem>
-		        <NavItem eventKey={2} href='#/event'>Nytt event</NavItem>
 		        <NavItem eventKey={3} href='#/events'>Events</NavItem>
-		        <NavItem eventKey={7} href='#/users'>Användare</NavItem>
 		        <NavItem eventKey={7} href='#/settings'>Inställningar</NavItem>
 		        <NavItem eventKey={5} href='#/login'>Logga in</NavItem>
-		        <NavItem eventKey={5} href='#/masonry'>Masonry</NavItem>
 		      </Nav>
 		    </CollapsibleNav>
 		  </Navbar>
@@ -46,6 +44,7 @@ let routes = (
     <Route name="reservation"    path="/reservation"    handler={require('./pages/reservation/reservation.js')}/>
     <Route name="settings"    path="/settings"    handler={require('./pages/settings/settings.js')}/>
     <Route name="masonry"    path="/masonry"    handler={require('./pages/masonry/masonry.js')}/>
+    <Route name="user"    path="/user/:id"    handler={require('./pages/user/user.js')}/>
     
   </Route>
 );
