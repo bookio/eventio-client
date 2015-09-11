@@ -8,81 +8,68 @@ let ThemeManager = new mui.Styles.ThemeManager();
 let Colors = mui.Styles.Colors;
 
 
-import {AppBar, List, ListItem, Checkbox, ToggleStar, ToggleStarBorder} from 'material-ui';
+import { AppBar, Slider, ListNested, List, ListItem, Checkbox, ToggleStar, ToggleStarBorder, RadioButton, RadioButtonGroup} from 'material-ui';
 
-let Main = React.createClass({
+module.exports = React.createClass({
+	
+	childContextTypes: {
+		muiTheme: React.PropTypes.object,
+	},
+	
+	getChildContext() {
+		return {
+			muiTheme: ThemeManager.getCurrentTheme(),
+		};
+	},
+	
+	componentWillMount() {
+		let injectTapEventPlugin = require('react-tap-event-plugin');
+		injectTapEventPlugin();
+		ThemeManager.setPalette({
+			accent1Color: Colors.blue300,
+		});
+	},
+	
+	onChange(event) {
+		var target = event.target; 
+		console.log('button changed', target);
+	},
+	render() {
+	
+		var checkbox = <RadioButton/>;
+		
+		return (
+			<div>
+				<AppBar title="Title" iconClassNameRight="muidocs-icon-navigation-expand-more" />
+  			
+				<List>
+					<ListItem primaryText = "Hello" secondaryText="Detta är ett test">
+						<Checkbox>HEJ</Checkbox>
+					</ListItem>
+					
+					<ListItem primaryText = "Hello">
+						<Checkbox>HEJ</Checkbox>
+					</ListItem>
+					
+					<ListItem primaryText = "Hello" leftCheckbox={checkbox} rightToggle={checkbox}>
+						
+						<Slider name="slider2" defaultValue={0.5} step={0.10} />
+					</ListItem>
+				</List>
 
-  childContextTypes: {
-    muiTheme: React.PropTypes.object,
-  },
-
-  getChildContext() {
-    return {
-      muiTheme: ThemeManager.getCurrentTheme(),
-    };
-  },
-
-  componentWillMount() {
-	  let injectTapEventPlugin = require('react-tap-event-plugin');
-	  injectTapEventPlugin();
-    ThemeManager.setPalette({
-      accent1Color: Colors.deepOrange500,
-    });
-  },
-
-
-  render() {
-
-    let containerStyle = {
-      textAlign: 'center',
-      //paddingTop: '200px',
-    };
-
-    let standardActions = [
-      { text: 'Okay' },
-    ];
-
-    return (
-      <div style={containerStyle}>
-        <Dialog
-          title="Super Secret Password"
-          actions={standardActions}
-          ref="superSecretPasswordDialog">
-          1-2-3-4-5
-        </Dialog>
-
-        <h1>material-ui</h1>
-        <h2>example project</h2>
-
-        <RaisedButton label="Super Secret Password" primary={true} onTouchTap={this._handleTouchTap} />
-        
-        <div style={{textAlign:'left'}}>
-			<Checkbox
-			  name="checkboxName1"
-			  value="checkboxValue1"
-			  label="went for a run today"/>
-			
-			<Checkbox
-			  name="checkboxName2"
-			  value="checkboxValue2"
-			  label="fed the dog"
-			  defaultChecked={true}/>
-			
-			<Checkbox
-			  name="checkboxName3"
-			  value="checkboxValue3"
-			  label="built a house on the moon"
-			  disabled={true}/>
-  </div>
-
-      </div>
-    );
-  },
-
-  _handleTouchTap() {
-    this.refs.superSecretPasswordDialog.show();
-  },
+						<Slider name="slider2" defaultValue={0.5} step={0.10} />
+						<span><Checkbox></Checkbox>HEJ</span>
+						<RadioButtonGroup name="foo" labelPosition='left' onChange={this.onChange}>
+							<RadioButton>Egelberg</RadioButton>
+							<RadioButton>Magnus</RadioButton>
+						</RadioButtonGroup>
+			</div>
+		);
+	},
+	
+	_handleTouchTap() {
+	//this.refs.superSecretPasswordDialog.show();
+	},
 
 });
 
-module.exports = Main;

@@ -6,31 +6,34 @@ var Router = require('react-router'); //import {Router, DefaultRoute, Link, Rout
 
 
 let App = React.createClass({  
-  render() {
-    return (
- 
- 
-      <div >
-		  <Navbar  brand='eventio.com' toggleNavKey={0} style={{borderRadius:'0px'}}>
-		  
-		    <CollapsibleNav eventKey={0}>
-		      <Nav navbar right>
-		        <NavItem eventKey={1} href='#/home'>Nyheter</NavItem>
-		        <NavItem eventKey={3} href='#/events'>Events</NavItem>
-		        <NavItem eventKey={7} href='#/settings'>Inställningar</NavItem>
-		        <NavItem eventKey={5} href='#/login'>Logga in</NavItem>
-		      </Nav>
-		    </CollapsibleNav>
-		  </Navbar>
 
-		  
-		<div style={{padding:'1em'}}>
-	        <RouteHandler/>
-	    </div>
-      </div>
-      
-    );
-  }
+	componentWillMount() {
+		var injectTapEventPlugin = require('react-tap-event-plugin');
+		injectTapEventPlugin();		
+	},
+	render() {
+		return (
+			<div >
+				<Navbar  brand='eventio.com' toggleNavKey={0} style={{borderRadius:'0px'}}>
+				
+					<CollapsibleNav eventKey={0}>
+						<Nav navbar right>
+							<NavItem eventKey={1} href='#/home'>Nyheter</NavItem>
+							<NavItem eventKey={3} href='#/events'>Events</NavItem>
+							<NavItem eventKey={7} href='#/settings'>Inställningar</NavItem>
+							<NavItem eventKey={5} href='#/login'>Logga in</NavItem>
+						</Nav>
+					</CollapsibleNav>
+				</Navbar>
+			
+			
+				<div style={{padding:'1em'}}>
+					<RouteHandler/>
+				</div>
+			</div>
+		
+		);
+	}
 });
 
 let routes = (  
@@ -48,6 +51,7 @@ let routes = (
     <Route name="settings"    path="/settings"    handler={require('./pages/settings/settings.js')}/>
     <Route name="masonry"    path="/masonry"    handler={require('./pages/masonry/masonry.js')}/>
     <Route name="user"    path="/user/:id"    handler={require('./pages/user/user.js')}/>
+    <Route name="elemental"    path="/elemental"    handler={require('./pages/elemental/elemental.js')}/>
     
   </Route>
 );

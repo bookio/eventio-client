@@ -22,6 +22,7 @@
     "autoprefixer-loader": "~2.1.0",
     "bootstrap": "~3.3.5",
     "css-loader": "~0.17.0",
+    "elemental": "^0.4.3",
     "file-loader": "~0.8.4",
     "jquery": "~2.1.4",
     "less": "~2.5.1",
@@ -30,6 +31,7 @@
     "react": "~0.13.3",
     "react-bootstrap": "~0.25.1",
     "react-masonry-component": "^1.0.4",
+    "react-spinkit": "^1.1.4",
     "react-tap-event-plugin": "~0.1.7",
     "style-loader": "~0.12.3",
     "url-loader": "~0.5.6"

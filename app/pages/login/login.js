@@ -5,7 +5,8 @@ import {Glyphicon, Panel, Modal, Label, Well, Tabs, Tab, SplitButton, MenuItem, 
 
 //var sprintf = require('../../tools/sprintf.js');
 import {sprintf} from '../../tools/tools.js';
-
+//import {Spinner} from '../../components/spinner.js';
+var Spinner = require('react-spinkit');
 
 
 
@@ -23,16 +24,18 @@ module.exports = React.createClass({
 	saveState() {
 		
 	},
+
 	getInitialState() {
 
 		var state = {};
 
 		state.username = sprintf('foo@bar.se');
-		state.password = '';
 
 		if (localStorage.loginPage) {
 			state = JSON.parse(localStorage.loginPage);
 		}
+		state.password = '';
+		state.spinning = false;
 
 		return state;
 	},
@@ -57,28 +60,57 @@ module.exports = React.createClass({
 	},
 	
 	login() {
+		var self = this;
+		
 		var Gopher = require('../../tools/gopher.js');
 		console.log(this.state.username, this.state.password);
 		
 		var request = Gopher.login(this.state.username, this.state.password);
+		
+		self.setState({spinning:true});
 		
 		request.done(function() {
 			localStorage.sessionID = Gopher.sessionID;
 			console.log(Gopher.sessionID);
 			window.location.hash = "#/home";
 		});
+		
+		request.fail(function() {
+			self.setState({spinning:false});
+			
+		});
 	},
 
 	render() {
 
+		var self = this;
 
-
-		var rowStyle = {
+		var renderSpinner = function() {
+			if (self.state.spinning) {
+				return (
+					<Row style={{textAlign:'center', padding:'1em'}}>
+						<Spinner spinnerName='three-bounce'  noFade/>
+					</Row>
+				);
+				
+			}
+			
+		}
+		
+		var glyphStyle = {
+			fontSize:'3em'
 		};
-
 		
+		if (this.state.spinning) {
+			glyphStyle.opacity = '0.5';
+		}
+		else {
+			glyphStyle.cursor = 'pointer';
+		}
 		
-		var html = (
+		return (
+			
+			
 			<div className='login-page'>
 			
 				<Grid style={{maxWidth:'25em'}}>
@@ -91,16 +123,15 @@ module.exports = React.createClass({
 
 					<Row style={{textAlign:'center'}}>
 						<div onClick={this.login} style={{}}>	
-							<Glyphicon  glyph='play-circle'  style={{cursor:'pointer', fontSize:'3em'}}/>
+							<Glyphicon  glyph='play-circle'  style={glyphStyle}/>
 						</div>
 					</Row>
 					
-
+					{renderSpinner()}
 				</Grid>
 			</div>
 		);
 
-		return html;
 	}
 
 });

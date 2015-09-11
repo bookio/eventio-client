@@ -91,6 +91,7 @@ module.exports = React.createClass({
 				    <ListViewItem title='Events' href='#/events' glyphRight='chevron-right'/>
 				    <ListViewItem title='Masonry' subtitle='Prova på en variant av Isotope' href='#/masonry' glyphRight='chevron-right'/>
 				    <ListViewItem title='Material-UI' subtitle='Se ett exempel på hur Material-UI ser ut' href='#/material' glyphRight='chevron-right'/>
+				    <ListViewItem title='Elemental-UI' subtitle='Se ett exempel på hur Elemental-UI ser ut' href='#/elemental' glyphRight='chevron-right'/>
 
 
 				</ListView>
