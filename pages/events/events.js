@@ -1,5 +1,6 @@
 import React from 'react';
 import {Glyphicon, Input, Jumbotron, Row, Col, Grid, Thumbnail, Button} from 'react-bootstrap';
+import {Page} from '../../components/controls.js';
 
 var Masonry = require('react-masonry-component')(React);
 
@@ -144,7 +145,7 @@ module.exports = React.createClass({
 		];
 		
 		return (
-			<div>
+			<Page>
 	
 				<Grid>
 					<Row>
@@ -158,7 +159,7 @@ module.exports = React.createClass({
 				</Grid>			
 	
 
-			</div>
+			</Page>
 
 
 		);

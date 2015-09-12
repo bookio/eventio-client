@@ -3,6 +3,7 @@
 import React from 'react';
 import {ListGroup, ListGroupItem, Panel, Modal, Label, Well, Tabs, Tab, SplitButton, MenuItem, Jumbotron, Grid, Row, Col, Button, ButtonGroup, ButtonToolbar, Input, Thumbnail} from 'react-bootstrap';
 import {ListView, ListViewItem} from '../../components/listview.js';
+import {Page} from '../../components/controls.js';
 
 var sprintf = require('../../tools/sprintf.js');
 var Model = require('../../tools/model.js');
@@ -96,7 +97,18 @@ module.exports = React.createClass({
 	
 	render() {
 		return (
-			<UserList users = {this.state.users} />
+			<Page>
+			<Grid>
+				<UserList users = {this.state.users} />
+			
+				<Row style={{textAlign:'center'}}>
+					<Button href='#/user' bsStyle='primary'>
+						Skapa ny
+					</Button>
+				</Row>
+			</Grid>
+			</Page>
+			
 		);
 	}
 

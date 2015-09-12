@@ -5,9 +5,9 @@
 
 import React from 'react';
 
-var SectionHeader = require('../../components/SectionHeader.js');
-
-import {Panel, Modal, Label, Well, Tabs, Tab, SplitButton, MenuItem, Jumbotron, Grid, Row, Col, Button, ButtonGroup, ButtonToolbar, Input, Thumbnail} from 'react-bootstrap';
+//import {Input, MenuItem, Page, Panel, Grid, Row, Col, SplitButton} from '../../components/ui.js';
+//import {Panel, Grid, Row, Col, SplitButton, Button} from 'react-bootstrap';
+import {Page, Input, Row, Col, SplitButton, Button, MenuItem, Grid, Panel} from '../../components/ui.js'
 import {sprintf} from '../../tools/tools.js';
 
 
@@ -41,14 +41,7 @@ var App = React.createClass({
 	getInitialState(){
 
 		var state = {};
-		
-		state.event = {};
-
-		if (localStorage.event) {
-			state.event = JSON.parse(localStorage.event);
-		}
-
-		return event;
+		return state;
 	},
 	
 
@@ -87,10 +80,15 @@ var App = React.createClass({
 							<Input type='textarea' style={{height:'4em'}} value={this.state.value} placeholder='Beskrivning' label='' help='' hasFeedback ref='input' onChange={this.handleChange} />
 						</Panel>
 					</Row>
-	
+
+
+
+
+
 					<Row>
 						<Input type='text' value={this.state.value} placeholder='Taggar' label='' help='Exempel #tasting #excursion #seminar' hasFeedback ref='input' onChange={this.handleChange} />
 					</Row>
+
 
 					<Row>
 						<Panel>
@@ -114,14 +112,13 @@ var App = React.createClass({
 						</Grid>
 						</Panel>
 					</Row>
-	
-					<Row>
-					</Row>
+
+
 					<Row>
 						<Panel header={sprintf('Öppen för %s', 'reservation!')}>
 							<Grid style = {gridStyle}>
 								<Row style = {rowStyle} >
-									<Input type='radio' name="foo" value={this.state.value} label='Nu' hasFeedback ref='input' onChange={this.handleChange} />
+										<Input type='radio' name="foo" value={this.state.value} label='Nu' hasFeedback ref='input' onChange={this.handleChange} />
 								</Row>
 								<Row>
 									<Grid>
@@ -174,6 +171,7 @@ var App = React.createClass({
 						</Panel>
 					</Row>
 
+
 					<Row>
 						<Panel header="Kösystem">
 							<Input type='checkbox' value={this.state.value} help='Om eventet är fullt placeras nya bokningar i kö. Deltagarna meddelas via SMS eller mail.	' label='Tillåt kö' hasFeedback ref='input' onChange={this.handleChange} />
@@ -185,15 +183,29 @@ var App = React.createClass({
 						<Button bsStyle='success' onClick={buttonClick} style={{minWidth: '100px'}} >Skapa nytt event</Button>
 						
 					</Row>
-	
+
+
+
+
+
+
+
+
+
+
+
 				</Grid>
 		);
 
-		return html;
+		return (
+			<Page>
+				{html}
+			</Page>
+		);
 	}
+	
 
 });
-
 
 
 

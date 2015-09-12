@@ -3,10 +3,51 @@
 import React from 'react';
 import {Glyphicon, Panel, Modal, Label, Well, Tabs, Tab, SplitButton, MenuItem, Jumbotron, Grid, Row, Col, Button, ButtonGroup, ButtonToolbar, Input, Thumbnail} from 'react-bootstrap';
 
+import {Page} from '../../components/controls.js';
+
 //var sprintf = require('../../tools/sprintf.js');
 import {sprintf} from '../../tools/tools.js';
 //import {Spinner} from '../../components/spinner.js';
 var Spinner = require('react-spinkit');
+
+
+var LoginButton = React.createClass({
+
+
+	getDefaultProps() {
+	
+		function onClick() {
+			alert(1);
+		}
+		
+		return {
+			onClick: onClick
+		}
+	},
+		
+
+	getInitialState() {
+		return {disabled:false};
+	},
+	
+	render() {
+	
+		var glyphStyle = {
+			fontSize:'3em',
+			boxShadow:'none',
+			display:'table-cell',
+			verticalAlign: 'middle',
+			textAlign: 'right'
+		};
+	
+		return (
+				<Button  style={{border:'none', boxShadow:'none', borderRadius:'0px'}}>	
+					<Glyphicon  glyph='play-circle'  style={glyphStyle}/>
+				</Button>
+		);
+		
+	}
+});
 
 
 
@@ -36,6 +77,7 @@ module.exports = React.createClass({
 		}
 		state.password = '';
 		state.spinning = false;
+		state.foo = 'MEG';
 
 		return state;
 	},
@@ -111,11 +153,11 @@ module.exports = React.createClass({
 		return (
 			
 			
-			<div className='login-page'>
+			<Page>
 			
 				<Grid style={{maxWidth:'25em'}}>
 					<Row>
-						<Input type='text' value={this.state.username} placeholder='Användarnamn' label='' help='' hasFeedback ref='input' onChange={this.onChangeUsername} />
+							<Input type='text' value={this.state.username} placeholder='Användarnamn' label='' help='' hasFeedback ref='input' onChange={this.onChangeUsername} />
 					</Row>
 					<Row>
 						<Input type='text' value={this.state.password} placeholder='Lösenord' label='' help='' hasFeedback ref='input' onChange={this.onChangePassword} />
@@ -125,11 +167,13 @@ module.exports = React.createClass({
 						<div onClick={this.login} style={{}}>	
 							<Glyphicon  glyph='play-circle'  style={glyphStyle}/>
 						</div>
+						
 					</Row>
+					
 					
 					{renderSpinner()}
 				</Grid>
-			</div>
+			</Page>
 		);
 
 	}

@@ -3,6 +3,7 @@
 import React from 'react';
 import {Label, ListGroup, ListGroupItem, Panel, ButtonGroup, Glyphicon, Input, Jumbotron, Row, Col, Grid, Thumbnail, Button} from 'react-bootstrap';
 import {ListView, ListViewItem} from '../../components/listview.js';
+import {Page} from '../../components/controls.js';
 
 
 var ListGroupItemContent = React.createClass({
@@ -76,6 +77,7 @@ module.exports = React.createClass({
 	render() {
 
 		return (
+			<Page>
 			<Grid>
 				<Panel>
 					<h5>
@@ -98,6 +100,7 @@ module.exports = React.createClass({
 
 
 			</Grid>
+			</Page>
 
 		);
 	}

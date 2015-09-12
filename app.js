@@ -5,6 +5,8 @@ import {Navbar,  CollapsibleNav, NavItem, Nav} from 'react-bootstrap';
 var Router = require('react-router'); //import {Router, DefaultRoute, Link, Route, RouteHandler } from 'react-router';
 
 
+require('./app.less');
+
 let App = React.createClass({  
 
 	componentWillMount() {
@@ -50,8 +52,10 @@ let routes = (
     <Route name="reservation"    path="/reservation"    handler={require('./pages/reservation/reservation.js')}/>
     <Route name="settings"    path="/settings"    handler={require('./pages/settings/settings.js')}/>
     <Route name="masonry"    path="/masonry"    handler={require('./pages/masonry/masonry.js')}/>
+    <Route name="user-new"    path="/user"    handler={require('./pages/user/user.js')}/>
     <Route name="user"    path="/user/:id"    handler={require('./pages/user/user.js')}/>
     <Route name="elemental"    path="/elemental"    handler={require('./pages/elemental/elemental.js')}/>
+    <Route name="test"    path="/test"    handler={require('./pages/test/test.js')}/>
     
   </Route>
 );

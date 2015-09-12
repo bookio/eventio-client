@@ -101,7 +101,7 @@ module.exports.ListViewItem = React.createClass({
 
 		if (this.props.href != '') {
 			return (
-			    <a className='list-group-item' href={this.props.href}>
+			    <a className='list-group-item' href={this.props.href} style={{}}>
 			    	{content()}
 			    </a>
 			);
