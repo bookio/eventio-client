@@ -3,7 +3,7 @@
 import React from 'react';
 import {Glyphicon, Panel, Modal, Label, Well, Tabs, Tab, SplitButton, MenuItem, Jumbotron, Grid, Row, Col, Button, ButtonGroup, ButtonToolbar, Input, Thumbnail} from 'react-bootstrap';
 
-import {Page} from '../../components/controls.js';
+import {Page} from '../../components/ui.js';
 
 //var sprintf = require('../../tools/sprintf.js');
 import {sprintf} from '../../tools/tools.js';

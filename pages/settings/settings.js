@@ -3,7 +3,7 @@
 import React from 'react';
 import {Label, ListGroup, ListGroupItem, Panel, ButtonGroup, Glyphicon, Input, Jumbotron, Row, Col, Grid, Thumbnail, Button} from 'react-bootstrap';
 import {ListView, ListViewItem} from '../../components/listview.js';
-import {Page} from '../../components/controls.js';
+import {Page} from '../../components/ui.js';
 
 
 var ListGroupItemContent = React.createClass({
@@ -78,7 +78,7 @@ module.exports = React.createClass({
 
 		return (
 			<Page>
-			<Grid>
+			<Grid style={{maxWidth:'600px'}}>
 				<Panel>
 					<h5>
 						Detta är egentligen inte några inställningar utan mer en plats för att komma åt olika sidor.

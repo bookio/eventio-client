@@ -3,7 +3,7 @@
 import React from 'react';
 import {ListGroup, ListGroupItem, Panel, Modal, Label, Well, Tabs, Tab, SplitButton, MenuItem, Jumbotron, Grid, Row, Col, Button, ButtonGroup, ButtonToolbar, Input, Thumbnail} from 'react-bootstrap';
 import {ListView, ListViewItem} from '../../components/listview.js';
-import {Page} from '../../components/controls.js';
+import {Page, Spinner} from '../../components/ui.js';
 
 var sprintf = require('../../tools/sprintf.js');
 var Model = require('../../tools/model.js');
@@ -14,12 +14,12 @@ var UserList = React.createClass({
 
 	getInitialState() {
 
-		return {users:[]}
+		return {};
 	},
 
 	getDefaultProps() {
 		return {
-			users: [{id:1, name:'OLLE'}, {id:2, name:'PELLE'}]
+			users: []
 		};
 	},
   
@@ -64,49 +64,86 @@ module.exports = React.createClass({
 
 	
 	getInitialState() {
-		return {users:[]};
-	},
 	
-	
-	componentWillUnmount() {
+		var state = {};
 		
+		state.users = [];
+		state.ready = false;
+
+		return state;
 	},
 	
-	componentWillMount() {
-	},
 	
 	componentDidMount() {
 		
+		console.log('Fetching users...');
+
 		var self = this;
 		var request = Model.Users.fetch();
 		
-		request.done(function(users) {
 
-			if (self.isMounted()) {
-				self.setState({users:users});				
-				
-			}
+		request.done(function(users) {
+			console.log('Done.');
+			self.setState({ready:true, users:users});				
 		});	
 
 	
 	},
 
-	componentDidUpdate(prevProps, prevState) {
+	
+	renderList() {
+
+		if (this.state.ready) {
+			var children = this.state.users.map(function(user, index) {
+			
+				return (
+					<ListViewItem key={index} title={user.name} glyphRight='chevron-right' href={sprintf('#/user/%s', user.id)}>
+					</ListViewItem>
+				);
+			});		
+			
+			return (
+				<Row>
+					{children}
+				</Row>
+			);
+			
+		}
 	},
 	
+	renderSpinner() {
+
+		if (!this.state.ready) {
+			return (
+				<Row style={{textAlign:'center', padding:'1em'}}>
+					<Spinner spinnerName='three-bounce'  noFade/>
+				</Row>
+			);
+		}
+	},
 	
-	render() {
-		return (
-			<Page>
-			<Grid>
-				<UserList users = {this.state.users} />
-			
-				<Row style={{textAlign:'center'}}>
+	renderButton() {
+		if (this.state.ready) {
+			return (
+				<Row style={{textAlign:'center', padding:'1em'}}>
 					<Button href='#/user' bsStyle='primary'>
 						Skapa ny
 					</Button>
 				</Row>
-			</Grid>
+			);		
+			
+		}
+	},
+	
+	render() {
+		return (
+			<Page>
+				<Grid style={{maxWidth:'600px'}}>
+					{this.renderSpinner()}
+					{this.renderList()}
+					{this.renderButton()}
+				
+				</Grid>
 			</Page>
 			
 		);

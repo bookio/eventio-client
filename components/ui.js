@@ -19,8 +19,8 @@ module.exports.Button = Button;
 module.exports.ButtonGroup = ButtonGroup;
 module.exports.Row = Row;
 module.exports.Col = Col;
-
-
+module.exports.Spinner = require('react-spinkit');
+/*
 module.exports.Panel = React.createClass({
 
 	render() {
@@ -33,15 +33,15 @@ module.exports.Panel = React.createClass({
 		
 	}
 });
-
+*/
 module.exports.Page = React.createClass({
 
 	render() {
 	
 		return (
-			<div style={{padding:'2em', background:'transparent'}}>
+			<div style={{}}>
 				{this.props.children}
-			</div>
+				</	div>
 		);
 		
 	}

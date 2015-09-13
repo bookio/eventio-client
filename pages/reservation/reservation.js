@@ -1,5 +1,6 @@
 import React from 'react';
 import {Panel, ButtonGroup, Glyphicon, Input, Jumbotron, Row, Col, Grid, Thumbnail, Button} from 'react-bootstrap';
+import {Page} from '../../components/ui.js';
 
 
 var EventCard = React.createClass({
@@ -52,13 +53,13 @@ module.exports = React.createClass({
 			
 			render() {
 				return (
-					<Grid>
+					<div>
 						<Jumbotron>
 							<h1>Tack för din bokning!</h1>
 							<p>Se gärna om det finns något annat evenemang som skulle passa.</p>
 							<p><Button href="#/events"  bsStyle='primary'>Visa mer</Button></p>
 						</Jumbotron>
-					</Grid>	
+					</div>	
 				);
 				
 			}
@@ -68,19 +69,17 @@ module.exports = React.createClass({
 		
 			render() {
 				return (
-					<Grid>
+					<div>
 						<Row>
-							<Grid>
-								<Row>
+							<Col md={12}>
 									<EventCard title = 'Vinprovning' description = 'Nu en vinprovning på Österlen med spännande röda viner' image = {require('./images/wine.jpg')}/> 
-								</Row>
-							</Grid>							
+							</Col>
 						</Row>
 						<Row>
-							<Col md={10} style={{paddingLeft:'0px'}}>
+							<Col md={6} style={{}}>
 								<Input type='text' placeholder='Antal platser' label='' help='' hasFeedback ref='input'  />
 							</Col>
-							<Col md={2} style={{textAlign:'right'}}>
+							<Col md={6} style={{textAlign:'left'}}>
 								<ButtonGroup>
 									<Button><Glyphicon glyph='plus'/></Button>
 									<Button><Glyphicon glyph='minus'/></Button>
@@ -89,43 +88,47 @@ module.exports = React.createClass({
 						</Row>
 		
 						<Row>
-							<Input type='text' placeholder='' label='' help='' hasFeedback ref='input'  />
+							<Col md={4}>
+								<Input type='text' placeholder='Telefon' label='' help='' hasFeedback ref='input'  />
+							</Col>
+							<Col md={4}>
+								<Input type='text' placeholder='E-post' label='' help='' hasFeedback ref='input'  />
+							</Col>
+							<Col md={4}>
+								<Input type='text' placeholder='Ditt namn på Twitter' label='' help='' hasFeedback ref='input'  />
+							</Col>
 						</Row>
 						<Row>
-							<Input type='text' placeholder='Telefon' label='' help='' hasFeedback ref='input'  />
-						</Row>
-						<Row>
-							<Input type='text' placeholder='E-post' label='' help='' hasFeedback ref='input'  />
-						</Row>
-						<Row>
-							<Input type='text' placeholder='Ditt namn på Twitter' label='' help='' hasFeedback ref='input'  />
+							<Col md={12}>
+								<Input type='checkbox'  label='Håll mig informerad om erbjudanden' hasFeedback ref='input'  />
+							</Col>
 						</Row>
 		
-						<Row >
-							<Input type='checkbox'  label='Håll mig informerad om erbjudanden' hasFeedback ref='input'  />
-						</Row>
-		
 						<Row>
-							<Panel>
-								<Input style={{height:'6em'}} type='textarea' placeholder='Övrig information' label='' help='' hasFeedback ref='input'  />
-							</Panel>
+							<Col md={12}>
+								<Panel>
+									<Input style={{height:'6em'}} type='textarea' placeholder='Övrig information' label='' help='' hasFeedback ref='input'  />
+								</Panel>
+							</Col>
 						</Row>
 
 		
 						<Row style={{textAlign:'center'}}>
 							<Button style={{width:'10em'}} bsStyle='primary' onClick={this.props.onSubmit} >Boka</Button>
 						</Row>
-					</Grid>
+					</div>
 				);
 			}
 		});
 		
 
 		return (
-
-			<form>
-				{this.state.mode == 'form' ? <ReservationForm onSubmit={this.onClick}/> : <ThankYouForm/>}
-			</form>
+			
+			<Page>
+				<Grid fluid style={{maxWidth:'600px'}}>
+					{this.state.mode == 'form' ? <ReservationForm onSubmit={this.onClick}/> : <ThankYouForm/>}
+				</Grid>
+			</Page>
 		);
 		
 	}

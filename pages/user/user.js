@@ -1,79 +1,12 @@
 import React from 'react';
 import {ListGroup, ListGroupItem,  Modal, Label, Well, Tabs, Tab, SplitButton, MenuItem, Jumbotron, Grid, Row, Col, Button, ButtonGroup, ButtonToolbar, Input, Thumbnail} from 'react-bootstrap';
 import {ListView, ListViewItem} from '../../components/listview.js';
-import {Page, Panel, TextBox, Checkbox} from '../../components/controls.js';
+import {Page, Panel, TextBox, Checkbox} from '../../components/ui.js';
 import Spinner from 'react-spinkit';
 
 var sprintf = require('../../tools/tools.js').sprintf;
 var Model = require('../../tools/model.js');
 
-/*
-var TextBox = React.createClass({
-
-	getDefaultProps() {
-	
-		return {
-			controller: undefined,
-			stateKey: '',
-			placeholder: '',
-			help: '',
-			label: '',
-			disabled: false
-		};
-	},
-
-	onChange(event) {
-		var state = {};
-		state[this.props.stateKey] = event.target.value;
-		this.props.controller.setState(state);	
-	},
-	
-	
-	render() {
-	
-		return (
-			<Input type='text' disabled={this.props.disabled} value={this.props.controller.state[this.props.stateKey]} placeholder={this.props.placeholder} label={this.props.label} help={this.props.help} hasFeedback onChange={this.onChange} />
-		);
-		
-	}
-});
-
-
-
-
-var Checkbox = React.createClass({
-
-
-	getDefaultProps() {
-	
-		return {
-			controller: undefined,
-			stateKey: '',
-			placeholder: '',
-			help: '',
-			label: ''
-		};
-	},
-
-	onChange(event) {
-		var state = {};
-		state[this.props.stateKey] = event.target.checked;
-		this.props.controller.setState(state);	
-	},
-	
-	isChecked() {
-		return this.props.controller.state[this.props.stateKey];		
-	},
-	
-	render() {
-	
-		return (
-			<Input type='checkbox' checked={this.isChecked()}  placeholder={this.props.placeholder} label={this.props.label} help={this.props.help} hasFeedback onChange={this.onChange} />
-		);
-		
-	}
-});
-*/
 
 module.exports = React.createClass({
 
@@ -163,7 +96,7 @@ module.exports = React.createClass({
 		else {
 			return (
 				<Row>
-					<TextBox  controller={this} stateKey='password' label='Lösenord'/>
+					<TextBox controller={this} stateKey='password' label='Lösenord'/>
 					<TextBox controller={this} stateKey='retypedPassword' label='Repetera lösenord'/>
 				</Row>
 			);

@@ -68,7 +68,7 @@ var App = React.createClass({
 		}
 		
 		var html = (
-				<Grid>
+				<Grid style={{maxWidth:'600px'}}>
 					<Row>
 						<h4>Nytt event</h4>
 					</Row>
@@ -92,82 +92,50 @@ var App = React.createClass({
 
 					<Row>
 						<Panel>
-						<Grid>
 							<Row>
-								<Col xs={12} md={5} lg={5}>
+								<Col md={12}>
 									<Input type='text' value={this.state.value} placeholder='' label='Pris' help='' hasFeedback ref='input' onChange={this.handleChange} />
-								</Col>
-								<Col xs={12} md={5} lg={5}>
 									<Input type='text' value={this.state.value} placeholder='' label='Datum och tid' help='' hasFeedback ref='input' onChange={this.handleChange} />
-								</Col>
-							</Row>
-							<Row>
-								<Col xs={12} md={5} lg={5}>
 									<Input type='text' value={this.state.value} placeholder='' label='Antal platser' help='' hasFeedback ref='input' onChange={this.handleChange} />
-								</Col>
-								<Col xs={12} md={5} lg={5}>
 									<Input type='text' value={this.state.value} placeholder='' label='Plats' help='' hasFeedback ref='input' onChange={this.handleChange} />
 								</Col>
 							</Row>
-						</Grid>
 						</Panel>
 					</Row>
 
 
 					<Row>
 						<Panel header={sprintf('Öppen för %s', 'reservation!')}>
-							<Grid style = {gridStyle}>
-								<Row style = {rowStyle} >
+								<Row>
+									<Col md={12}>
 										<Input type='radio' name="foo" value={this.state.value} label='Nu' hasFeedback ref='input' onChange={this.handleChange} />
-								</Row>
-								<Row>
-									<Grid>
-									<Row>
 										<Input type='radio' name="foo" value={this.state.value} label='Inte förrän' hasFeedback ref='input' onChange={this.handleChange} />
-									</Row>
-									<Row>
-										<div style={{width: '90%'}}>
-											<Input type='text' value={this.state.value} placeholder='Ange datum' label='' />
-										</div>
-									</Row>
-									</Grid>
+										<Input type='text' value={this.state.value} placeholder='Ange datum' label='' />
+									</Col>
 								</Row>
-								<Row>
-								</Row>
-							</Grid>
 						</Panel>
 					</Row>
 
 
 					<Row>
 						<Panel header='Stäng för reservation'>
-							<Grid style = {gridStyle}>
-								<Row style = {rowStyle} >
-									<Grid>
-									<Row>
-										<Col md={8}>
-											<Input type='radio' name="foo2" value={this.state.value} label='När eventet startas' hasFeedback ref='input' onChange={this.handleChange} />
-										</Col>
-									</Row>
-									</Grid>
-								</Row>
-								<Row>
-									<Grid>
-										<Row>
-											<Col md={2}>
-												<Input type='radio' name = "foo2" value={this.state.value} label='Tillåt bokningar' hasFeedback ref='input' onChange={this.handleChange} />
-											</Col>
-											<Col md={6}>
-												<SplitButton title='6 timmar innan' pullRight id='split-button-pull-right'>
-													<MenuItem eventKey='1'>En timme innan</MenuItem>
-													<MenuItem eventKey='2'>En dag innan</MenuItem>
-													<MenuItem eventKey='3'>En vecka </MenuItem>
-												</SplitButton>	
-											</Col>
-										</Row>
-									</Grid>
-								</Row>
-							</Grid>
+							<Row style = {rowStyle} >
+								<Col md={12}>
+									<Input type='radio' name="foo2" value={this.state.value} label='När eventet startas' hasFeedback ref='input' onChange={this.handleChange} />
+								</Col>
+							</Row>
+							<Row>
+								<Col sm={12} md={3}>
+									<Input type='radio' name = "foo2" value={this.state.value} label='Tillåt bokningar' hasFeedback ref='input' onChange={this.handleChange} />
+								</Col>
+								<Col sm={12} md={9}>
+									<SplitButton title='6 timmar innan' pullRight id='split-button-pull-right'>
+										<MenuItem eventKey='1'>En timme innan</MenuItem>
+										<MenuItem eventKey='2'>En dag innan</MenuItem>
+										<MenuItem eventKey='3'>En vecka </MenuItem>
+									</SplitButton>	
+								</Col>
+							</Row>
 						</Panel>
 					</Row>
 
