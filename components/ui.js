@@ -6,8 +6,9 @@ import {Glyphicon, Panel, Modal, Label, Well, Tabs, Tab, SplitButton, DropdownBu
 
 import {sprintf} from '../tools/tools.js';
 var Spinner = require('react-spinkit');
+var Bootstrap = require('react-bootstrap');
 
-
+module.exports.React = require('react');
 module.exports.Spinner = require('react-spinkit');
 module.exports.SplitButton = SplitButton;
 module.exports.Input = Input;
@@ -20,6 +21,15 @@ module.exports.ButtonGroup = ButtonGroup;
 module.exports.Row = Row;
 module.exports.Col = Col;
 module.exports.Spinner = require('react-spinkit');
+module.exports.ButtonGroup = Bootstrap.ButtonGroup;
+module.exports.Glyphicon = Bootstrap.Glyphicon;
+module.exports.Jumbotron = Bootstrap.Jumbotron;
+module.exports.Thumbnail = Bootstrap.Thumbnail;
+module.exports.ListView = require('./listview.js').ListView;
+module.exports.ListViewItem = require('./listview.js').ListViewItem;
+
+
+
 /*
 module.exports.Panel = React.createClass({
 
@@ -34,14 +44,41 @@ module.exports.Panel = React.createClass({
 	}
 });
 */
+
+module.exports.Grid = React.createClass({
+
+	render() {
+	
+		var style = this.props.style == undefined ? {} : this.props.style;
+
+		
+		if (style.maxWidth == undefined)
+			style.maxWidth = '60em';
+
+
+		if (style.textAlign == undefined)
+			style.textAlign = 'left';
+
+		return (
+			<Bootstrap.Grid style={style}  >
+				{this.props.children}
+			</Bootstrap.Grid>
+		);
+		
+	}
+
+});
+
 module.exports.Page = React.createClass({
 
 	render() {
 	
 		return (
-			<div style={{}}>
-				{this.props.children}
-				</	div>
+			<div style={{display:'block', paddingBottom:'1em', textAlign:'center'}}>
+				<div style={{padding:'0px', display:'inline-block', textAlign:'center', margin:'auto'}}>
+					{this.props.children}
+				</div>
+			</div>
 		);
 		
 	}

@@ -1,9 +1,9 @@
 
 
 import React from 'react';
-import {Glyphicon, Panel, Modal, Label, Well, Tabs, Tab, SplitButton, MenuItem, Jumbotron, Grid, Row, Col, Button, ButtonGroup, ButtonToolbar, Input, Thumbnail} from 'react-bootstrap';
+import {Glyphicon, Panel, Modal, Label, Well, Tabs, Tab, SplitButton, MenuItem, Jumbotron, Button, ButtonGroup, ButtonToolbar, Input, Thumbnail} from 'react-bootstrap';
 
-import {Page, TextBox} from '../../components/ui.js';
+import {Page, TextBox, Grid, Row, Col} from '../../components/ui.js';
 
 //var sprintf = require('../../tools/sprintf.js');
 import {sprintf} from '../../tools/tools.js';
@@ -151,25 +151,25 @@ module.exports = React.createClass({
 			
 			
 			<Page>
-			
-				<Grid style={{maxWidth:'25em'}}>
-					<Row>
-						<TextBox name='username' value={this.state.username} placeholder='Användarnamn' onChange={this.onChange} />
-					</Row>
-					<Row>
-						<TextBox name='password' value={this.state.password} placeholder='Lösenord' onChange={this.onChange} />
-					</Row>
-
-					<Row style={{textAlign:'center'}}>
-						<div onClick={this.login} style={{}}>	
-							<Glyphicon  glyph='play-circle'  style={glyphStyle}/>
-						</div>
+					<Grid style={{maxWidth:'30em'}}>
+						<Row>
+							<TextBox name='username' value={this.state.username} placeholder='Användarnamn' onChange={this.onChange} />
+						</Row>
+						<Row>
+							<TextBox name='password' value={this.state.password} placeholder='Lösenord' onChange={this.onChange} />
+						</Row>
+	
+						<Row style={{textAlign:'center'}}>
+							<div onClick={this.login} style={{}}>	
+								<Glyphicon  glyph='play-circle'  style={glyphStyle}/>
+							</div>
+							
+						</Row>
 						
-					</Row>
-					
-					
-					{renderSpinner()}
-				</Grid>
+						
+						{renderSpinner()}
+					</Grid>
+			
 			</Page>
 		);
 

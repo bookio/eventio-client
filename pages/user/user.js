@@ -1,7 +1,5 @@
-import React from 'react';
-import {ListGroup, ListGroupItem,  Modal, Label, Well, Tabs, Tab, SplitButton, MenuItem, Jumbotron, Grid, Row, Col, Button, ButtonGroup, ButtonToolbar, Input, Thumbnail} from 'react-bootstrap';
-import {ListView, ListViewItem} from '../../components/listview.js';
-import {Page, Panel, TextBox, CheckBox, Spinner} from '../../components/ui.js';
+
+import {React, ListGroup, ListGroupItem,  Modal, Label, Well, Tabs, Tab, SplitButton, MenuItem, Jumbotron, Button, ButtonGroup, ButtonToolbar, Input, Thumbnail, ListView, ListViewItem, Page, Panel, TextBox, CheckBox, Spinner, Grid, Row, Col} from '../../components/ui.js';
 
 
 var sprintf = require('../../tools/tools.js').sprintf;
@@ -90,11 +88,13 @@ module.exports = React.createClass({
 		if (this.state.id != undefined) {
 			return (
 				<Row>
-					<CheckBox name='changePassword' value={this.state.changePassword} label='Ändra lösenord' onChange={this.onChange}/>
-					<Panel >
-						<TextBox  name='password' value={this.state.password} disabled={this.state.changePassword == 0} label='Nytt lösenord' onChange={this.onChange}/>
-						<TextBox  name='oldPassword' value={this.state.oldPassword} disabled={this.state.changePassword == 0} label='Ditt gamla lösenord' onChange={this.onChange}/>
-					</Panel>
+					<Col xs={12} sm={12} md={12}>
+						<CheckBox name='changePassword' value={this.state.changePassword} label='Ändra lösenord' onChange={this.onChange}/>
+						<Panel >
+							<TextBox  name='password' value={this.state.password} disabled={this.state.changePassword == 0} label='Nytt lösenord' onChange={this.onChange}/>
+							<TextBox  name='oldPassword' value={this.state.oldPassword} disabled={this.state.changePassword == 0} label='Ditt gamla lösenord' onChange={this.onChange}/>
+						</Panel>
+					</Col>
 				</Row>
 				
 			);
@@ -104,8 +104,10 @@ module.exports = React.createClass({
 		else {
 			return (
 				<Row>
-					<TextBox name='password' value={this.state.password} label='Lösenord' onChange={this.onChange}/>
-					<TextBox name='retypedPassword' value={this.state.retypedPassword} label='Repetera lösenord' onChange={this.onChange}/>
+					<Col xs={12} sm={12} md={12}>
+						<TextBox name='password' value={this.state.password} label='Lösenord' onChange={this.onChange}/>
+						<TextBox name='retypedPassword' value={this.state.retypedPassword} label='Repetera lösenord' onChange={this.onChange}/>
+					</Col>
 				</Row>
 			);
 			
@@ -139,7 +141,9 @@ module.exports = React.createClass({
 		if (!this.state.ready) {
 			return (
 				<Row>
-					<Spinner spinnerName='three-bounce'  noFade/>
+					<Col md={12}>
+						<Spinner spinnerName='three-bounce'  noFade/>
+					</Col>
 				</Row>
 			);
 		}
@@ -147,17 +151,21 @@ module.exports = React.createClass({
 			return (
 				<div>
 					<Row>
-						<TextBox name='name' value={this.state.name} label='Namn' onChange={this.onChange}/>
-						<TextBox name='username' value={this.state.username} label='Användarnamn' onChange={this.onChange}/>
+						<Col xs={12} sm={12} md={12}>
+							<TextBox name='name' value={this.state.name} label='Namn' onChange={this.onChange}/>
+							<TextBox name='username' value={this.state.username} label='Användarnamn' onChange={this.onChange}/>
+						</Col>
 					</Row>
 	
 					{this.renderPassword()}
 	
 					<Row style={{textAlign:'center'}}>
-						<ButtonGroup>
-							{this.renderSaveButton()}
-							{this.renderDeleteButton()}
-						</ButtonGroup>
+						<Col xs={12} sm={12} md={12}>
+							<ButtonGroup>
+								{this.renderSaveButton()}
+								{this.renderDeleteButton()}
+							</ButtonGroup>
+						</Col>
 					</Row>
 				</div>
 			);
@@ -168,7 +176,7 @@ module.exports = React.createClass({
 	render() {
 		return (
 			<Page>
-				<Grid style={{maxWidth:'600px'}}>	
+				<Grid>	
 					{this.renderContent()}
 				</Grid>
 			</Page>

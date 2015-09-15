@@ -1,9 +1,7 @@
 
 
 import React from 'react';
-import {ListGroup, ListGroupItem, Panel, Modal, Label, Well, Tabs, Tab, SplitButton, MenuItem, Jumbotron, Grid, Row, Col, Button, ButtonGroup, ButtonToolbar, Input, Thumbnail} from 'react-bootstrap';
-import {ListView, ListViewItem} from '../../components/listview.js';
-import {Page, Spinner} from '../../components/ui.js';
+import {ListView, ListViewItem, ListGroup, ListGroupItem, Panel, Modal, Label, Well, Tabs, Tab, SplitButton, MenuItem, Jumbotron, Button, ButtonGroup, ButtonToolbar, Input, Thumbnail, Page, Spinner, Grid, Row, Col} from '../../components/ui.js';
 
 var sprintf = require('../../tools/sprintf.js');
 var Model = require('../../tools/model.js');
@@ -138,7 +136,7 @@ module.exports = React.createClass({
 	render() {
 		return (
 			<Page>
-				<Grid style={{maxWidth:'600px'}}>
+				<Grid>
 					{this.renderSpinner()}
 					{this.renderList()}
 					{this.renderButton()}

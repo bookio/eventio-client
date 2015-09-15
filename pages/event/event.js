@@ -68,7 +68,7 @@ var App = React.createClass({
 		}
 		
 		var html = (
-				<Grid style={{maxWidth:'600px'}}>
+				<Grid >
 					<Row>
 						<h4>Nytt event</h4>
 					</Row>
@@ -86,7 +86,7 @@ var App = React.createClass({
 
 
 					<Row>
-						<Input type='text' value={this.state.value} placeholder='Taggar' label='' help='Exempel #tasting #excursion #seminar' hasFeedback ref='input' onChange={this.handleChange} />
+						<Input type='text' value={this.state.value} placeholder='' label='Taggar' help='Exempel #tasting #excursion #seminar' hasFeedback ref='input' onChange={this.handleChange} />
 					</Row>
 
 
@@ -166,7 +166,7 @@ var App = React.createClass({
 		);
 
 		return (
-			<Page>
+			<Page style={{}}>
 				{html}
 			</Page>
 		);

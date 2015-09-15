@@ -1,6 +1,6 @@
 import React from 'react';
-import {Panel, ButtonGroup, Glyphicon, Input, Jumbotron, Row, Col, Grid, Thumbnail, Button} from 'react-bootstrap';
-import {Page} from '../../components/ui.js';
+
+import {Page, TextBox, Grid, Row, Col, Panel, ButtonGroup, Glyphicon, Input, Jumbotron, Thumbnail, Button} from '../../components/ui.js';
 
 
 var EventCard = React.createClass({
@@ -47,6 +47,12 @@ module.exports = React.createClass({
 		this.setState({mode:'thank-you'});
 	},
 	
+	onChange(name, value) {
+		var state = {};
+		state[name] = value;
+		this.setState(state);
+	},
+	
 	render() {
 
 		var ThankYouForm = React.createClass({
@@ -88,13 +94,13 @@ module.exports = React.createClass({
 						</Row>
 		
 						<Row>
-							<Col md={4}>
+							<Col xs={12} sm={6} md={4}>
 								<Input type='text' placeholder='Telefon' label='' help='' hasFeedback ref='input'  />
 							</Col>
-							<Col md={4}>
+							<Col xs={12} sm={6} md={4}>
 								<Input type='text' placeholder='E-post' label='' help='' hasFeedback ref='input'  />
 							</Col>
-							<Col md={4}>
+							<Col xs={12} sm={6} md={4}>
 								<Input type='text' placeholder='Ditt namn på Twitter' label='' help='' hasFeedback ref='input'  />
 							</Col>
 						</Row>
@@ -125,7 +131,7 @@ module.exports = React.createClass({
 		return (
 			
 			<Page>
-				<Grid fluid style={{maxWidth:'600px'}}>
+				<Grid fluid>
 					{this.state.mode == 'form' ? <ReservationForm onSubmit={this.onClick}/> : <ThankYouForm/>}
 				</Grid>
 			</Page>

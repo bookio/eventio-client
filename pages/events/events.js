@@ -1,6 +1,4 @@
-import React from 'react';
-import {Glyphicon, Input, Jumbotron, Row, Col, Grid, Thumbnail, Button} from 'react-bootstrap';
-import {Page} from '../../components/controls.js';
+import {React, Grid, Glyphicon, Input, Jumbotron, Row, Col, Thumbnail, Button, Page} from '../../components/ui.js';
 
 var Masonry = require('react-masonry-component')(React);
 
@@ -160,13 +158,13 @@ module.exports = React.createClass({
 		        });		
 		return (
 				
-
-		
-				<Grid fluid>
-						<Row style={{display:'inline-block', textAlign:'center'}}>
-							{children}
-						</Row>
-				</Grid>			
+			<Page>
+			<Grid fluid style={{maxWidth:'100%'}}>
+					<Row style={{display:'inline-block', textAlign:'center'}}>
+						{children}
+					</Row>
+			</Grid>	
+			</Page>		
 	
 
 

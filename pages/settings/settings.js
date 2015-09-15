@@ -1,9 +1,9 @@
 
 
 import React from 'react';
-import {Label, ListGroup, ListGroupItem, Panel, ButtonGroup, Glyphicon, Input, Jumbotron, Row, Col, Grid, Thumbnail, Button} from 'react-bootstrap';
+import {Label, ListGroup, ListGroupItem, Panel, ButtonGroup, Glyphicon, Input, Jumbotron, Thumbnail, Button} from 'react-bootstrap';
 import {ListView, ListViewItem} from '../../components/listview.js';
-import {Page, CheckBox, RadioButton, TextBox} from '../../components/ui.js';
+import {Page, CheckBox, RadioButton, TextBox, Grid, Row, Col} from '../../components/ui.js';
 
 var Dropzone = require('react-dropzone');
 
@@ -94,22 +94,13 @@ module.exports = React.createClass({
 		return (
 			
 			<Page>
-				<Grid style={{maxWidth:'600px'}}>
+				<Grid>
 					<Row>
 						<Col md={12}>
 							<Panel header='Obligatoriska uppgifter vid bokning'>
 								<CheckBox onChange={this.onChange} name='nameRequired'  value={this.state.nameRequired}  label='Namn'/>
 								<CheckBox onChange={this.onChange} name='phoneRequired' value={this.state.phoneRequired} label='Telefon'/>
 								<CheckBox onChange={this.onChange} name='emailRequired' value={this.state.emailRequired} label='E-post'/>
-							</Panel>
-						</Col>
-					</Row>
-					<Row>
-						<Col md={12}>
-							<Panel header='Radioknappar'>
-								<RadioButton onChange={this.onChange} name='option' option={0} value={this.state.option}  label='Alternativ A'/>
-								<RadioButton onChange={this.onChange} name='option' option={1} value={this.state.option}  label='Alternativ B'/>
-								<RadioButton onChange={this.onChange} name='option' option={2} value={this.state.option}  label='Alternativ C'/>
 							</Panel>
 						</Col>
 					</Row>

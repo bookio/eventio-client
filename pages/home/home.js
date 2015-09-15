@@ -1,11 +1,10 @@
 
 
 import React from 'react';
-import {Panel, ButtonGroup, Glyphicon, Input, Jumbotron, Row, Col, Grid, Thumbnail, Button} from 'react-bootstrap';
-import {Page} from '../../components/controls.js';
+import {Page, Panel, ButtonGroup, Glyphicon, Input, Jumbotron, Row, Col, Grid, Thumbnail, Button} from '../../components/ui.js';
 
 
-var App = React.createClass({
+module.exports = React.createClass({
 
 	getInitialState(){
 
@@ -34,4 +33,3 @@ var App = React.createClass({
 
 });
 
-module.exports = App;
