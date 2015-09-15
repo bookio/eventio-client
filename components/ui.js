@@ -47,47 +47,13 @@ module.exports.Page = React.createClass({
 	}
 });
 
-module.exports.TextBox = React.createClass({
 
-	getDefaultProps() {
-	
-		return {
-			controller: undefined,
-			stateKey: '',
-			placeholder: '',
-			help: '',
-			label: '',
-			disabled: false
-		};
-	},
-
-	onChange(event) {
-		var state = {};
-		state[this.props.stateKey] = event.target.value;
-		this.props.controller.setState(state);	
-	},
-	
-	
-	render() {
-	
-		return (
-			<Input type='text' disabled={this.props.disabled} value={this.props.controller.state[this.props.stateKey]} placeholder={this.props.placeholder} label={this.props.label} help={this.props.help} hasFeedback onChange={this.onChange} />
-		);
-		
-	}
-});
-
-
-
-
-module.exports.Checkbox = React.createClass({
+var CheckBox = module.exports.CheckBox = React.createClass({
 
 
 	getDefaultProps() {
 	
 		return {
-			controller: undefined,
-			stateKey: '',
 			placeholder: '',
 			help: '',
 			label: ''
@@ -95,60 +61,74 @@ module.exports.Checkbox = React.createClass({
 	},
 
 	onChange(event) {
-		var state = {};
-		state[this.props.stateKey] = event.target.checked;
-		this.props.controller.setState(state);	
+		this.props.onChange(this.props.name, event.target.checked);
 	},
 	
-	isChecked() {
-		return this.props.controller.state[this.props.stateKey];		
-	},
 	
 	render() {
 	
 		return (
-			<Input type='checkbox' checked={this.isChecked()}  placeholder={this.props.placeholder} label={this.props.label} help={this.props.help} hasFeedback onChange={this.onChange} />
+			<Input type='checkbox' disabled={this.props.disabled} checked={this.props.value}  placeholder={this.props.placeholder} label={this.props.label} help={this.props.help} hasFeedback onChange={this.onChange} />
 		);
 		
 	}
 });
 
 
-
-module.exports.RadioButton = React.createClass({
+var RadioButton = module.exports.RadioButton = React.createClass({
 
 
 	getDefaultProps() {
 	
 		return {
-			controller: undefined,
-			name: '',
-			field: '',
+			placeholder: '',
 			help: '',
-			label: '',
-			value: '',
-			disabled: ''
+			label: ''
 		};
 	},
 
 	onChange(event) {
-		var state = {};
-		state[this.props.field] = this.props.value;
-		this.props.controller.setState(state);	
+		this.props.onChange(this.props.name, this.props.option);
 	},
 	
 	isChecked() {
-		return this.props.controller.state[this.props.field] == this.props.value
+		return this.props.value == this.props.option;
 	},
 	
 	render() {
 	
 		return (
-			<Input name={this.props.name} type='radio' disabled={this.props.disabled} checked={this.isChecked()}  label={this.props.label} help={this.props.help} hasFeedback onChange={this.onChange} />
+			<Input type='radio' name={this.props.name} disabled={this.props.disabled} checked={this.isChecked()}  placeholder={this.props.placeholder} label={this.props.label} help={this.props.help} hasFeedback onChange={this.onChange} />
 		);
 		
 	}
 });
+
+var TextBox = module.exports.TextBox = React.createClass({
+
+	getDefaultProps() {
+	
+		return {
+			label: '',
+			value: ''
+		};
+	},
+
+	onChange(event) {
+		this.props.onChange(this.props.name, event.target.value);
+	},
+	
+	
+	render() {
+		return (
+			<Input type='text' disabled={this.props.disabled} label={this.props.label} value={this.props.value} placeholder={this.props.placeholder} onChange={this.onChange}>
+			</Input>
+		);
+		
+	}
+});
+
+
 
 
 

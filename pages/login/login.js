@@ -3,7 +3,7 @@
 import React from 'react';
 import {Glyphicon, Panel, Modal, Label, Well, Tabs, Tab, SplitButton, MenuItem, Jumbotron, Grid, Row, Col, Button, ButtonGroup, ButtonToolbar, Input, Thumbnail} from 'react-bootstrap';
 
-import {Page} from '../../components/ui.js';
+import {Page, TextBox} from '../../components/ui.js';
 
 //var sprintf = require('../../tools/sprintf.js');
 import {sprintf} from '../../tools/tools.js';
@@ -91,15 +91,12 @@ module.exports = React.createClass({
 		});
 	},
 	
-	onChangePassword(event) {
-
-		this.setState({password: event.target.value});
+	onChange(name, value) {
+		var state = {};
+		state[name] = value;
+		this.setState(state);
 	},
 
-	onChangeUsername(event) {
-
-		this.setState({username: event.target.value});
-	},
 	
 	login() {
 		var self = this;
@@ -157,10 +154,10 @@ module.exports = React.createClass({
 			
 				<Grid style={{maxWidth:'25em'}}>
 					<Row>
-							<Input type='text' value={this.state.username} placeholder='Användarnamn' label='' help='' hasFeedback ref='input' onChange={this.onChangeUsername} />
+						<TextBox name='username' value={this.state.username} placeholder='Användarnamn' onChange={this.onChange} />
 					</Row>
 					<Row>
-						<Input type='text' value={this.state.password} placeholder='Lösenord' label='' help='' hasFeedback ref='input' onChange={this.onChangePassword} />
+						<TextBox name='password' value={this.state.password} placeholder='Lösenord' onChange={this.onChange} />
 					</Row>
 
 					<Row style={{textAlign:'center'}}>

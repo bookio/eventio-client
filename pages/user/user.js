@@ -1,8 +1,8 @@
 import React from 'react';
 import {ListGroup, ListGroupItem,  Modal, Label, Well, Tabs, Tab, SplitButton, MenuItem, Jumbotron, Grid, Row, Col, Button, ButtonGroup, ButtonToolbar, Input, Thumbnail} from 'react-bootstrap';
 import {ListView, ListViewItem} from '../../components/listview.js';
-import {Page, Panel, TextBox, Checkbox} from '../../components/ui.js';
-import Spinner from 'react-spinkit';
+import {Page, Panel, TextBox, CheckBox, Spinner} from '../../components/ui.js';
+
 
 var sprintf = require('../../tools/tools.js').sprintf;
 var Model = require('../../tools/model.js');
@@ -52,6 +52,14 @@ module.exports = React.createClass({
 		
 	},
 	
+	onChange(name, value) {
+	
+		var state = {};
+		state[name] = value;
+		this.setState(state);	
+	},
+	
+	
 	onSave(event) {
 
 		var user = {};
@@ -82,10 +90,10 @@ module.exports = React.createClass({
 		if (this.state.id != undefined) {
 			return (
 				<Row>
-					<Checkbox controller={this} stateKey='changePassword' label='Ändra lösenord'/>
+					<CheckBox name='changePassword' value={this.state.changePassword} label='Ändra lösenord' onChange={this.onChange}/>
 					<Panel >
-						<TextBox  controller={this} stateKey='password' disabled={this.state.changePassword == 0} label='Nytt lösenord'/>
-						<TextBox  controller={this} stateKey='oldPassword' disabled={this.state.changePassword == 0} label='Ditt gamla lösenord'/>
+						<TextBox  name='password' value={this.state.password} disabled={this.state.changePassword == 0} label='Nytt lösenord' onChange={this.onChange}/>
+						<TextBox  name='oldPassword' value={this.state.oldPassword} disabled={this.state.changePassword == 0} label='Ditt gamla lösenord' onChange={this.onChange}/>
 					</Panel>
 				</Row>
 				
@@ -96,8 +104,8 @@ module.exports = React.createClass({
 		else {
 			return (
 				<Row>
-					<TextBox controller={this} stateKey='password' label='Lösenord'/>
-					<TextBox controller={this} stateKey='retypedPassword' label='Repetera lösenord'/>
+					<TextBox name='password' value={this.state.password} label='Lösenord' onChange={this.onChange}/>
+					<TextBox name='retypedPassword' value={this.state.retypedPassword} label='Repetera lösenord' onChange={this.onChange}/>
 				</Row>
 			);
 			
@@ -139,8 +147,8 @@ module.exports = React.createClass({
 			return (
 				<div>
 					<Row>
-						<TextBox controller={this} stateKey='name' label='Namn'/>
-						<TextBox controller={this} stateKey='username' label='Användarnamn'/>
+						<TextBox name='name' value={this.state.name} label='Namn' onChange={this.onChange}/>
+						<TextBox name='username' value={this.state.username} label='Användarnamn' onChange={this.onChange}/>
 					</Row>
 	
 					{this.renderPassword()}
