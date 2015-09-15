@@ -10,7 +10,7 @@ var XNewCard = React.createClass({
 	
 	render() {
 		return (
-			<div style={{paddingLeft:'1em', paddingRight:'1em', width:'300px'}}>
+			<div style={{paddingLeft:'1em', paddingRight:'1em', width:'280px'}}>
 				<Thumbnail style={{border:'4px dashed rgb(240,240,240)', borderRadius:'20px'}}>
 					<h4>Skapa nytt eventXX</h4>
 					<Button block href="#/event">Skapa nytt event</Button>
@@ -26,12 +26,12 @@ var NewCard = React.createClass({
 	
 	render() {
 		return (
-			<div style={{paddingLeft:'1em', paddingRight:'1em', width:'300px'}}>
+			<div style={{paddingLeft:'1em', paddingRight:'1em', width:'300px', height:'400px'}}>
 				<Thumbnail  >
 					<div style={{border:'4px dashed rgb(240,240,240)', borderRadius:'20px', height:'200px'}}>
 					</div>
 					<h4>Skapa nytt event</h4>
-					<p>
+					<p  style={{overflow:'hidden', textOverflow: 'ellipsis'}}>
 						Lorem ipsum dolor sit amet, aperiri volutpat partiendo eos eu.
 					</p>
 					<p>
@@ -50,10 +50,12 @@ var EventCard = React.createClass({
 	
 	render() {
 		return (
-			<div style={{paddingLeft:'1em', paddingRight:'1em', width:'300px'}}>
+			<div style={{textAlign:'center', display:'inline-block', paddingLeft:'1em', paddingRight:'1em', width:'300px'}}>
 				<Thumbnail src={this.props.image} style={{}}>
 					<h4>{this.props.title}</h4>
-					<p>{this.props.description}</p>
+					<p  style={{overflow:'hidden', textOverflow: 'ellipsis', height:'5em'}}>
+						{this.props.description}
+					</p>
 					<p>
 						<Button block href="#/reservation">Boka</Button>
 					</p>
@@ -144,22 +146,28 @@ module.exports = React.createClass({
 			}
 		];
 		
+		var style={
+			//display:'table-cell',
+			//textAlign:'center'	
+		};
+
+		        var children = events.map(function(event, index) {
+		           return (
+						<Col xs={12} sm={6} md={4} lg={3} style={style}>
+		           			<EventCard key={index} title={event.title} description={event.description} image={event.image}/>
+						</Col>
+		            );
+		        });		
 		return (
-			<Page>
-	
-				<Grid>
-					<Row>
-						<Input type='text' placeholder='Sök' label='' help='' hasFeedback ref='input'>
-							
-						</Input>
-					</Row>
-					<Row>
-						<EventGallery events={events}/>
-					</Row>
+				
+
+		
+				<Grid fluid>
+						<Row style={{display:'inline-block', textAlign:'center'}}>
+							{children}
+						</Row>
 				</Grid>			
 	
-
-			</Page>
 
 
 		);

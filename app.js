@@ -29,7 +29,7 @@ let App = React.createClass({
 				</Navbar>
 			
 			
-				<div style={{padding:'1em'}}>
+				<div style={{padding:'0px'}}>
 					<RouteHandler/>
 				</div>
 			</div>
