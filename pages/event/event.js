@@ -1,164 +1,148 @@
-/*
-
-
-*/
-
 import React from 'react';
 
-//import {Input, MenuItem, Page, Panel, Grid, Row, Col, SplitButton} from '../../components/ui.js';
-//import {Panel, Grid, Row, Col, SplitButton, Button} from 'react-bootstrap';
-import {Page, Input, Row, Col, SplitButton, Button, MenuItem, Grid, Panel} from '../../components/ui.js'
+import {Page, TextBox, RadioButton, CheckBox, Input, Row, Col, SplitButton, Button, MenuItem, Grid, Panel} from '../../components/ui.js'
 import {sprintf} from '../../tools/tools.js';
-
-
-
-
-
-var Separator = React.createClass({
-
-	render() {
-		var rowStyle = {
-			background: 'red',
-			padding: '1em',
-			paddingLeft: '2em',
-			//borderRadius: '2em',			
-			textAlign: 'left',
-			fontSize: '120%'
-		};
-		
-		return (
-			<Row style={{rowStyle}}>
-				<h5 style={{fontSize:'120%'}}>{this.props.caption}</h5>
-			</Row>
-		);
-	}
-
-});
+var Dropzone = require('react-dropzone');
 
 
 var App = React.createClass({
 
 	getInitialState(){
 
-		var state = {};
+		var state = {
+			name: '',
+			allow_queue: true,
+			open_at:null,
+			close_at:null
+		};
 		return state;
 	},
 	
+	onChange(name, value) {
+
+		var state = {};
+		state[name] = value;
+		this.setState(state);
+	},
+	
+	handleChange(name, event) {
+		
+		console.log('change');
+		switch (name) {
+			case 'name': {
+				this.setState({name:event.target.value});
+				break;
+			}
+		}
+	},
+	
+	onSave() {
+		console.log(this.state);	
+	},
+
+	onDrop(files) {
+		console.log('onDrop', files);
+		this.setState({image:files[0]});
+	},
+
+	renderImage() {
+
+		console.log(this.state.image);
+		if (this.state.image) {
+			return (
+				<div style={{display:'table', width:'100%', height:'100%'}}>
+					<div style={{display:'table-cell', verticalAlign:'middle', textAlign:'center', padding:'1em'}}>
+						<img src={this.state.image.preview} style={{maxHeight:'200px'}}/>
+					</div>
+				</div>
+			);
+		}
+	},
 
 	render() {
 
-		var self = this;
-		
-		var gridStyle = {
-			//border: '1px solid yellow',
-			cornerRadius: '8px',
-			textAlign: 'left'			
-		};
-
-		var rowStyle = {
-			
-		};
-		
-
-		function buttonClick(event) {
-			console.log(self.context);
-			console.log('handling back button press');
-			event.preventDefault();
-			window.history.back();
-		}
 		
 		var html = (
 				<Grid >
+					<h4>Nytt event</h4>
 					<Row>
-						<h4>Nytt event</h4>
+						<Col md={12}>
+							<TextBox name='name' value={this.state.name} placeholder='Namn' onChange={this.onChange} />
+						</Col>
 					</Row>
 					<Row>
-						<Input type='text' value={this.state.value} placeholder='Namn' label='' help='' hasFeedback ref='input' onChange={this.handleChange} />
-					</Row>
-					<Row>
-						<Panel style={{}}>
-							<Input type='textarea' style={{height:'4em'}} value={this.state.value} placeholder='Beskrivning' label='' help='' hasFeedback ref='input' onChange={this.handleChange} />
-						</Panel>
-					</Row>
-
-
-
-
-
-					<Row>
-						<Input type='text' value={this.state.value} placeholder='' label='Taggar' help='Exempel #tasting #excursion #seminar' hasFeedback ref='input' onChange={this.handleChange} />
+						<Col md={12}>
+							<Panel style={{}}>
+								<Input type='textarea' style={{height:'4em'}} value={this.state.value} placeholder='Beskrivning' label='' help='' hasFeedback  onChange={this.onChange} />
+							</Panel>
+						</Col>
 					</Row>
 
-
 					<Row>
-						<Panel>
-							<Row>
-								<Col md={12}>
-									<Input type='text' value={this.state.value} placeholder='' label='Pris' help='' hasFeedback ref='input' onChange={this.handleChange} />
-									<Input type='text' value={this.state.value} placeholder='' label='Datum och tid' help='' hasFeedback ref='input' onChange={this.handleChange} />
-									<Input type='text' value={this.state.value} placeholder='' label='Antal platser' help='' hasFeedback ref='input' onChange={this.handleChange} />
-									<Input type='text' value={this.state.value} placeholder='' label='Plats' help='' hasFeedback ref='input' onChange={this.handleChange} />
-								</Col>
-							</Row>
-						</Panel>
+						<Col md={12}>
+							<TextBox name='price' label='Pris' value={this.state.price} onChange={this.onChange}/>
+						</Col>
 					</Row>
 
-
 					<Row>
-						<Panel header={sprintf('Öppen för %s', 'reservation!')}>
-								<Row>
-									<Col md={12}>
-										<Input type='radio' name="foo" value={this.state.value} label='Nu' hasFeedback ref='input' onChange={this.handleChange} />
-										<Input type='radio' name="foo" value={this.state.value} label='Inte förrän' hasFeedback ref='input' onChange={this.handleChange} />
-										<Input type='text' value={this.state.value} placeholder='Ange datum' label='' />
-									</Col>
-								</Row>
-						</Panel>
+						<Col md={12}>
+							<TextBox name='location' label='Plats' value={this.state.location} onChange={this.onChange}/>
+						</Col>
+					</Row>
+					<Row>
+						<Col md={12}>
+							<TextBox name='when' label='Tid och datum' value={this.state.when} onChange={this.onChange}/>
+						</Col>
+					</Row>
+					<Row>
+						<Col md={12}>
+							<TextBox name='seats' label='Antal platser' value={this.state.seats} onChange={this.onChange}/>
+						</Col>
 					</Row>
 
-
 					<Row>
-						<Panel header='Stäng för reservation'>
-							<Row style = {rowStyle} >
-								<Col md={12}>
-									<Input type='radio' name="foo2" value={this.state.value} label='När eventet startas' hasFeedback ref='input' onChange={this.handleChange} />
-								</Col>
-							</Row>
-							<Row>
-								<Col sm={12} md={3}>
-									<Input type='radio' name = "foo2" value={this.state.value} label='Tillåt bokningar' hasFeedback ref='input' onChange={this.handleChange} />
-								</Col>
-								<Col sm={12} md={9}>
-									<SplitButton title='6 timmar innan' pullRight id='split-button-pull-right'>
-										<MenuItem eventKey='1'>En timme innan</MenuItem>
-										<MenuItem eventKey='2'>En dag innan</MenuItem>
-										<MenuItem eventKey='3'>En vecka </MenuItem>
-									</SplitButton>	
-								</Col>
-							</Row>
-						</Panel>
+						<Col md={12}>
+							<Panel header='Bild' style={{textAlign:'left'}}>
+								<div style={{textAlign:'center'}}>
+									<Dropzone ref='dropzone' onDrop={this.onDrop} multiple={false} style={{display:'inline-block', textAlign:'center', width:'200px', height:'200px', borderRadius:'10px', border:'5px dashed rgb(220, 220, 220)'}}>
+										{this.renderImage()}
+									</Dropzone>
+								</div>
+								
+							</Panel>
+						</Col>
+					</Row>
+					
+					<Row>
+						<Col sm={12} md={6}>
+							<Panel header='Öppen för reservation'>
+								<RadioButton name='open_at_option' option={0} label='Nu' value={this.state.open_at_option} onChange={this.onChange}/>
+								<RadioButton name='open_at_option' option={1} label='Inte förrän' value={this.state.open_at_option} onChange={this.onChange}/>
+								<TextBox name='open_at' placeholder='Ange datum/tid' onChange={this.onChange} />
+							</Panel>
+						</Col>
+						<Col sm={12} md={6}>
+							<Panel header='Stäng för reservation'>
+								<RadioButton name='close_at_option' option={0} label='När eventet påbörjas' value={this.state.close_at_option} onChange={this.onChange}/>
+								<RadioButton name='close_at_option' option={1} label='Stäng vid' value={this.state.close_at_option} onChange={this.onChange}/>
+								<TextBox name='close_at' placeholder='Ange datum/tid' onChange={this.onChange} />
+							</Panel>
+						</Col>
 					</Row>
 
-
 					<Row>
-						<Panel header="Kösystem">
-							<Input type='checkbox' value={this.state.value} help='Om eventet är fullt placeras nya bokningar i kö. Deltagarna meddelas via SMS eller mail.	' label='Tillåt kö' hasFeedback ref='input' onChange={this.handleChange} />
-						</Panel>
+						<Col md={12}>
+							<Panel header="Kösystem">
+								<CheckBox name='allow_queue' value={this.state.allow_queue} help='Om eventet är fullt placeras nya bokningar i kö. Deltagarna meddelas via SMS eller mail.' label='Tillåt kö' onChange={this.onChange} />
+							</Panel>
+						</Col>
   					</Row>
 
 					
 					<Row style={{textAlign:'center'}}>
-						<Button bsStyle='success' onClick={buttonClick} style={{minWidth: '100px'}} >Skapa nytt event</Button>
+						<Button bsStyle='success' onClick={this.onSave} style={{minWidth: '10em'}} >Spara</Button>
 						
 					</Row>
-
-
-
-
-
-
-
-
 
 
 
