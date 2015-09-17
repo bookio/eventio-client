@@ -5,6 +5,34 @@ import {sprintf} from '../../tools/tools.js';
 var Dropzone = require('react-dropzone');
 
 
+
+var Clickable = React.createClass({
+
+	onClick(event) {
+		
+		alert('click');
+		
+	},
+	
+	onMouseDown(event) {
+		console.log('mouse down');
+		event.stopPropagation();
+		event.preventDefault();
+		console.log(event.clientX);
+		console.log('mouse down OK');
+	},
+
+	render() {
+		return (
+			<div onMouseDown={this.onMouseDown} style={{ background:'red'}}>
+				{this.props.children}
+			</div>
+		);
+		
+	}
+
+});
+
 var App = React.createClass({
 
 	getInitialState(){
@@ -41,8 +69,61 @@ var App = React.createClass({
 	},
 
 	onDrop(files) {
-		console.log('onDrop', files);
-		this.setState({image:files[0]});
+			
+		var self = this;
+				
+		function resize(src, options, callback) {
+			var image = new Image();
+			
+			function onLoad() {
+				var canvas = document.createElement("canvas"); 
+				
+				if (image.height > options.maxHeight) {
+					image.width  = image.width * options.maxHeight / image.height;
+					image.height = options.maxHeight;
+				}
+
+				if (image.width > options.maxWidth) {
+					image.height = image.height * options.maxWidth / image.width;
+					image.width  = options.maxWidth;
+				}
+				
+				var ctx = canvas.getContext("2d");
+				ctx.clearRect(0, 0, canvas.width, canvas.height);
+				
+				canvas.width  = image.width;
+				canvas.height = image.height;
+				
+				ctx.drawImage(image, 0, 0, image.width, image.height);
+
+				callback(canvas.toDataURL());				
+			};
+			
+			image.onload = onLoad;
+			image.src    = src;
+		}		
+		
+		var file = files[0];
+
+		console.log('image', file);
+
+		if(!file.type.match(/image.*/)) {
+			console.log("The dropped file is not an image: ", file.type);
+			return;
+		}
+
+		
+		var reader = new FileReader();
+		
+		reader.onload = function(event) {
+			resize(event.target.result, {maxWidth:100, maxHeight:100}, function(image) {
+				self.setState({image:image});
+			});
+
+		};
+		reader.readAsDataURL(file);		
+
+		
 	},
 
 	renderImage() {
@@ -52,7 +133,7 @@ var App = React.createClass({
 			return (
 				<div style={{display:'table', width:'100%', height:'100%'}}>
 					<div style={{display:'table-cell', verticalAlign:'middle', textAlign:'center', padding:'1em'}}>
-						<img src={this.state.image.preview} style={{maxHeight:'200px'}}/>
+						<img src={this.state.image} style={{maxHeight:'200px'}}/>
 					</div>
 				</div>
 			);
@@ -150,9 +231,12 @@ var App = React.createClass({
 		);
 
 		return (
+				<Clickable>
 			<Page style={{}}>
 				{html}
+				
 			</Page>
+				</Clickable>
 		);
 	}
 	

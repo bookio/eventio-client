@@ -1,28 +1,28 @@
+var React = require('react');
+var Selectable = require('../../components/selectable.js');
+ 
+var App = React.createClass({
+  
+  render: function () {
 
-
-import {React, Spinner, Glyphicon, Panel, Modal, Label, Well, Tabs, Tab, SplitButton, DropdownButton, MenuItem, Jumbotron, Grid, Row, Col, Button, ButtonGroup, ButtonToolbar, Input, Thumbnail} from '../../components/ui.js';
-
-
-
-module.exports = React.createClass({
-
-	
-	propTypes: {
-	},
-
-
-
-	getInitialState() {
-		return {};
-	},
-
-
-	render() {
-		return <div>HEJ</div>
-
-	}
-
+	  
+        
+    return (
+      <Selectable component='div' onSelection={this.handleSelection}>
+      	<div key='A'>Kalle</div>
+      	<div key='B'>Kalle</div>
+      	<div key='C'>Kalle</div>
+      	<div key='D'>Kalle</div>
+        
+      </Selectable>
+    );
+  },
+  
+  handleSelection: function (keys) {
+    console.log('you selected the following keys', keys);
+  }
 });
+ 
 
 
-
+module.exports = App;
