@@ -4,8 +4,8 @@ import {sprintf, Base64} from './tools.js';
 
 	var Module = {};
 	
-	Module.baseURL = 'http://eventio-node.herokuapp.com';
-	//Module.baseURL = 'http://localhost:5000';
+	//Module.baseURL = 'http://eventio-node.herokuapp.com';
+	Module.baseURL = 'http://localhost:5000';
 	
 	Module.user = null;
 	Module.client = null;

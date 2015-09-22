@@ -2,10 +2,74 @@ import React from 'react';
 
 import {Page, TextBox, RadioButton, CheckBox, Input, Row, Col, SplitButton, Button, MenuItem, Grid, Panel} from '../../components/ui.js'
 import {sprintf} from '../../tools/tools.js';
+
+
+var Model = require('../../tools/model.js');
 var Dropzone = require('react-dropzone');
+var Router = require("react-router");
+var Promise = require('bluebird');
 
 
+var Fetch = function(host, url) {
+	
+	var http = require('http');
 
+	var headers = {};
+	headers["Authorization"] = 'b17c6f64-4d1b-4b9e-9fd0-4cb95af3e76d';
+	headers["Content-Type"] = 'application/json';
+	headers["Accept"] = 'application/json';
+	
+	//The url we want is: 'www.random.org/integers/?num=1&min=1&max=10&col=1&base=10&format=plain&rnd=new'
+	var options = {
+		host: 'localhost',
+		port: 5000,
+		path: '/users',
+		header: headers
+	};
+	
+	var callback = function(response) {
+		var str = '';
+	
+		//another chunk of data has been recieved, so append it to `str`
+		response.on('data', function (chunk) {
+			str += chunk;
+		});
+	
+		//the whole response has been recieved, so we just print it out here
+		response.on('end', function () {
+			console.log(str);
+		});
+	}
+	
+	http.request(options, callback).end();	
+}
+/*
+	Module.request = function(method, url, data) {
+	
+		var beforeSend = function(xhr) {
+			xhr.setRequestHeader("Authorization", Module.sessionID);
+			xhr.setRequestHeader("Content-Type", "application/json");
+			xhr.setRequestHeader("Accept", "application/json");
+		}
+	
+		console.log("Request %s/%s -> '%s'", method, url, data ? JSON.stringify(data) : '');
+		
+		var request = $.ajax({
+			type: method,
+			url: Module.baseURL + '/' + url,
+			data: data ? JSON.stringify(data) : null,
+			dataType: 'json',
+			beforeSend: beforeSend
+		});
+	
+		request.done(requestSucceeded);
+		request.fail(requestFailed);
+	
+		return request;
+	}	
+}
+
+*/
 var Clickable = React.createClass({
 
 	onClick(event) {
@@ -33,12 +97,51 @@ var Clickable = React.createClass({
 
 });
 
+
+var TextBoxEx = React.createClass({
+
+	getInitialState() {
+		return {};
+	},
+
+	getDefaultProps() {
+	
+		return {
+			label: '',
+			value: ''
+		};
+	},
+	
+	value() {
+		return this.state.value;
+	},
+
+	onChange(event) {
+		console.log('onchange');
+		this.setState({value:event.target.value});
+//		this.props.onChange(this.props.name, event.target.value);
+	},
+	
+	
+	render() {
+		this.state.value = this.props.value;
+		
+		return (
+			<Input type='text' disabled={this.props.disabled} label={this.props.label} value={this.state.value} placeholder={this.props.placeholder} onChange={this.onChange}>
+			</Input>
+		);
+		
+	}
+});
+
+
+
 var App = React.createClass({
 
 	getInitialState(){
 
 		var state = {
-			name: '',
+			name: 'OLLE',
 			allow_queue: true,
 			open_at:null,
 			close_at:null
@@ -48,24 +151,47 @@ var App = React.createClass({
 	
 	onChange(name, value) {
 
+		//console.log(name, value);
 		var state = {};
 		state[name] = value;
 		this.setState(state);
+		console.log(this.state);
 	},
 	
-	handleChange(name, event) {
-		
-		console.log('change');
-		switch (name) {
-			case 'name': {
-				this.setState({name:event.target.value});
-				break;
-			}
-		}
-	},
 	
 	onSave() {
-		console.log(this.state);	
+	/*
+		console.log(this.state);
+		
+		var event = {};
+		
+		event.name = this.refs.name.value(); //state.name;	
+		alert(event.name);
+		var request = Model.Events.save(event);
+		
+		request.done(function(event) {
+			window.history.back();
+		});
+		*/
+		Fetch();
+		/*	
+		var headers = {};
+		headers["Authorization"] = 'b17c6f64-4d1b-4b9e-9fd0-4cb95af3e76d';
+		headers["Content-Type"] = 'application/json';
+		headers["Accept"] = 'application/json';
+
+
+		var options = {};
+		options.method = 'GET';
+		options.headers = headers;
+
+		var request = Fetch('http://localhost:5000/users');
+		
+		request.then(function(result) {
+			console.log(result);
+		});
+		*/
+
 	},
 
 	onDrop(files) {
@@ -142,7 +268,9 @@ var App = React.createClass({
 
 	render() {
 
-		
+/*
+							<TextBoxEx ref='name' value={this.state.name} placeholder='Namn' onChange={this.onChange} />
+*/		
 		var html = (
 				<Grid >
 					<h4>Nytt event</h4>
@@ -231,12 +359,10 @@ var App = React.createClass({
 		);
 
 		return (
-				<Clickable>
 			<Page style={{}}>
 				{html}
 				
 			</Page>
-				</Clickable>
 		);
 	}
 	

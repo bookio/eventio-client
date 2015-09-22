@@ -17,7 +17,7 @@ module.exports = {
 			{ test: /\.(png|jpg|jpeg|svg)$/, loader: 'url-loader?limit=8192' }, // inline base64 URLs for <=8k images, direct URLs for the rest
 
             { test: /\.js?$/, loaders: ['react-hot', 'babel'], exclude: /node_modules/ },
-            { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'},
+            { test: /\.js$/, loader: 'babel-loader', exclude: /node_modules/},
 
 
         ]
@@ -28,3 +28,11 @@ module.exports = {
 	]
 
 };
+
+
+/*
+            { test: /\.js?$/, loaders: ['react-hot', 'babel'], exclude: /node_modules/ },
+            { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader'},
+
+
+*/
