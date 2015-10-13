@@ -147,7 +147,8 @@ var TextBox = module.exports.TextBox = React.createClass({
 	
 		return {
 			label: '',
-			value: ''
+			value: '',
+			type: 'text'
 		};
 	},
 
@@ -158,7 +159,7 @@ var TextBox = module.exports.TextBox = React.createClass({
 	
 	render() {
 		return (
-			<Input type='text' disabled={this.props.disabled} label={this.props.label} value={this.props.value} placeholder={this.props.placeholder} onChange={this.onChange}>
+			<Input type={this.props.type} disabled={this.props.disabled} label={this.props.label} value={this.props.value} placeholder={this.props.placeholder} onChange={this.onChange}>
 			</Input>
 		);
 		

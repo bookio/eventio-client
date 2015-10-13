@@ -1,7 +1,7 @@
 
 import {React, ListGroup, ListGroupItem,  Modal, Label, Well, Tabs, Tab, SplitButton, MenuItem, Jumbotron, Button, ButtonGroup, ButtonToolbar, Input, Thumbnail, ListView, ListViewItem, Page, Panel, TextBox, CheckBox, Spinner, Grid, Row, Col} from '../../components/ui.js';
 
-
+var Router = require("react-router");
 var sprintf = require('../../tools/tools.js').sprintf;
 var Model = require('../../tools/model.js');
 
@@ -78,7 +78,12 @@ module.exports = React.createClass({
 		var request = Model.Users.save(user, options);
 		
 		request.done(function(user) {
-			window.history.back();
+		
+			if (Router.History.length > 1)
+				Router.History.back();
+			else
+				Router.Navigation.transitionTo('/#home')
+			
 		});	
 		
 	},

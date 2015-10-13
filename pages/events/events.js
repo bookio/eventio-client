@@ -11,7 +11,7 @@ var XNewCard = React.createClass({
 			<div style={{paddingLeft:'1em', paddingRight:'1em', width:'280px'}}>
 				<Thumbnail style={{border:'4px dashed rgb(240,240,240)', borderRadius:'20px'}}>
 					<h4>Skapa nytt eventXX</h4>
-					<Button block href="#/event">Skapa nytt event</Button>
+					<Button block href="#/event-new">Skapa nytt event</Button>
 				</Thumbnail>
 			</div>
 		);

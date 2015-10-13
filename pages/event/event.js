@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Page, TextBox, RadioButton, CheckBox, Input, Row, Col, SplitButton, Button, MenuItem, Grid, Panel} from '../../components/ui.js'
+import {Page, TextBox, RadioButton, CheckBox, Input, Row, Col, Spinner, SplitButton, Button, ButtonGroup, MenuItem, Grid, Panel} from '../../components/ui.js'
 import {sprintf} from '../../tools/tools.js';
 
 
@@ -10,66 +10,7 @@ var Router = require("react-router");
 var Promise = require('bluebird');
 
 
-var Fetch = function(host, url) {
-	
-	var http = require('http');
 
-	var headers = {};
-	headers["Authorization"] = 'b17c6f64-4d1b-4b9e-9fd0-4cb95af3e76d';
-	headers["Content-Type"] = 'application/json';
-	headers["Accept"] = 'application/json';
-	
-	//The url we want is: 'www.random.org/integers/?num=1&min=1&max=10&col=1&base=10&format=plain&rnd=new'
-	var options = {
-		host: 'localhost',
-		port: 5000,
-		path: '/users',
-		header: headers
-	};
-	
-	var callback = function(response) {
-		var str = '';
-	
-		//another chunk of data has been recieved, so append it to `str`
-		response.on('data', function (chunk) {
-			str += chunk;
-		});
-	
-		//the whole response has been recieved, so we just print it out here
-		response.on('end', function () {
-			console.log(str);
-		});
-	}
-	
-	http.request(options, callback).end();	
-}
-/*
-	Module.request = function(method, url, data) {
-	
-		var beforeSend = function(xhr) {
-			xhr.setRequestHeader("Authorization", Module.sessionID);
-			xhr.setRequestHeader("Content-Type", "application/json");
-			xhr.setRequestHeader("Accept", "application/json");
-		}
-	
-		console.log("Request %s/%s -> '%s'", method, url, data ? JSON.stringify(data) : '');
-		
-		var request = $.ajax({
-			type: method,
-			url: Module.baseURL + '/' + url,
-			data: data ? JSON.stringify(data) : null,
-			dataType: 'json',
-			beforeSend: beforeSend
-		});
-	
-		request.done(requestSucceeded);
-		request.fail(requestFailed);
-	
-		return request;
-	}	
-}
-
-*/
 var Clickable = React.createClass({
 
 	onClick(event) {
@@ -138,59 +79,62 @@ var TextBoxEx = React.createClass({
 
 var App = React.createClass({
 
+	mixins: [Router.Navigation],
+	
 	getInitialState(){
 
 		var state = {
-			name: 'OLLE',
-			allow_queue: true,
-			open_at:null,
-			close_at:null
+			event: {},
+			ready: false
 		};
+		
 		return state;
 	},
 	
+
+	componentWillMount() {
+	
+		var component = this;
+		
+		if (component.props.params.id != undefined) {
+			var request = Model.Events.fetch(parseInt(component.props.params.id));
+			
+			request.done(function(event) {
+				component.setState({ready:true, event:event});				
+			});	
+			
+		}
+		else
+			component.setState({ready:true});
+	},
+		
+	
 	onChange(name, value) {
 
-		//console.log(name, value);
-		var state = {};
-		state[name] = value;
-		this.setState(state);
+		var event = this.state.event;
+		event[name] = value;
+		this.setState({event:event});
+
 		console.log(this.state);
 	},
 	
 	
 	onSave() {
-	/*
-		console.log(this.state);
-		
-		var event = {};
-		
-		event.name = this.refs.name.value(); //state.name;	
-		alert(event.name);
-		var request = Model.Events.save(event);
+
+		console.log(this.state.event);
+
+		var component = this;
+		var request = Model.Events.save(this.state.event);
 		
 		request.done(function(event) {
-			window.history.back();
+
+			if (Router.History.length > 1)
+				Router.History.back();
+			else
+				component.transitionTo('/#home');
+
+
 		});
-		*/
-		Fetch();
-		/*	
-		var headers = {};
-		headers["Authorization"] = 'b17c6f64-4d1b-4b9e-9fd0-4cb95af3e76d';
-		headers["Content-Type"] = 'application/json';
-		headers["Accept"] = 'application/json';
-
-
-		var options = {};
-		options.method = 'GET';
-		options.headers = headers;
-
-		var request = Fetch('http://localhost:5000/users');
-		
-		request.then(function(result) {
-			console.log(result);
-		});
-		*/
 
 	},
 
@@ -242,8 +186,8 @@ var App = React.createClass({
 		var reader = new FileReader();
 		
 		reader.onload = function(event) {
-			resize(event.target.result, {maxWidth:100, maxHeight:100}, function(image) {
-				self.setState({image:image});
+			resize(event.target.result, {maxWidth:250, maxHeight:200}, function(image) {
+				self.onChange('image', image);
 			});
 
 		};
@@ -254,58 +198,84 @@ var App = React.createClass({
 
 	renderImage() {
 
-		console.log(this.state.image);
-		if (this.state.image) {
+		if (this.state.event.image) {
 			return (
 				<div style={{display:'table', width:'100%', height:'100%'}}>
 					<div style={{display:'table-cell', verticalAlign:'middle', textAlign:'center', padding:'1em'}}>
-						<img src={this.state.image} style={{maxHeight:'200px'}}/>
+						<img src={this.state.event.image} style={{}}/>
 					</div>
 				</div>
 			);
 		}
 	},
 
-	render() {
+	renderSaveButton() {
+		return (
+			<Button onClick={this.onSave} bsStyle='primary'>
+				Spara
+			</Button>
+		);
+		
+	},
 
-/*
-							<TextBoxEx ref='name' value={this.state.name} placeholder='Namn' onChange={this.onChange} />
-*/		
+	renderDeleteButton() {
+		if (this.state.event.id != undefined) {
+			return (
+				<Button onClick={this.onDelete} bsStyle='warning'>
+					Radera
+				</Button>
+			);
+			
+		}
+		
+	},
+	renderPage() {
+
+		if (!this.state.ready) {
+			return (
+				<Row>
+					<Col md={12}>
+						<Spinner spinnerName='three-bounce' noFade/>
+					</Col>
+				</Row>
+			);
+		}
+		
 		var html = (
 				<Grid >
 					<h4>Nytt event</h4>
 					<Row>
 						<Col md={12}>
-							<TextBox name='name' value={this.state.name} placeholder='Namn' onChange={this.onChange} />
+							<TextBox name='name' value={this.state.event.name} placeholder='Namn' onChange={this.onChange} />
 						</Col>
 					</Row>
 					<Row>
 						<Col md={12}>
 							<Panel style={{}}>
-								<Input type='textarea' style={{height:'4em'}} value={this.state.value} placeholder='Beskrivning' label='' help='' hasFeedback  onChange={this.onChange} />
+								<TextBox type='textarea' name='description' style={{height:'4em'}} value={this.state.event.description} placeholder='Beskrivning' onChange={this.onChange} />
 							</Panel>
 						</Col>
 					</Row>
 
 					<Row>
 						<Col md={12}>
-							<TextBox name='price' label='Pris' value={this.state.price} onChange={this.onChange}/>
+							<TextBox name='price' label='Pris' value={this.state.event.price} onChange={this.onChange}/>
 						</Col>
 					</Row>
 
 					<Row>
 						<Col md={12}>
-							<TextBox name='location' label='Plats' value={this.state.location} onChange={this.onChange}/>
+							<TextBox name='location' label='Plats' value={this.state.event.location} onChange={this.onChange}/>
 						</Col>
 					</Row>
 					<Row>
 						<Col md={12}>
-							<TextBox name='when' label='Tid och datum' value={this.state.when} onChange={this.onChange}/>
+							<TextBox name='when' label='Tid och datum' value={this.state.event.when} onChange={this.onChange}/>
 						</Col>
 					</Row>
 					<Row>
 						<Col md={12}>
-							<TextBox name='seats' label='Antal platser' value={this.state.seats} onChange={this.onChange}/>
+							<TextBox name='seats' label='Antal platser' value={this.state.event.seats} onChange={this.onChange}/>
 						</Col>
 					</Row>
 
@@ -313,7 +283,7 @@ var App = React.createClass({
 						<Col md={12}>
 							<Panel header='Bild' style={{textAlign:'left'}}>
 								<div style={{textAlign:'center'}}>
-									<Dropzone ref='dropzone' onDrop={this.onDrop} multiple={false} style={{display:'inline-block', textAlign:'center', width:'200px', height:'200px', borderRadius:'10px', border:'5px dashed rgb(220, 220, 220)'}}>
+									<Dropzone ref='dropzone' onDrop={this.onDrop} multiple={false} style={{display:'inline-block', textAlign:'center', width:'100%', minHeight:'100px', borderRadius:'10px', border:'5px dashed rgb(220, 220, 220)'}}>
 										{this.renderImage()}
 									</Dropzone>
 								</div>
@@ -349,18 +319,29 @@ var App = React.createClass({
 
 					
 					<Row style={{textAlign:'center'}}>
-						<Button bsStyle='success' onClick={this.onSave} style={{minWidth: '10em'}} >Spara</Button>
-						
+						<Col xs={12} sm={12} md={12}>
+							<ButtonGroup>
+								{this.renderSaveButton()}
+								{this.renderDeleteButton()}
+							</ButtonGroup>
+						</Col>
 					</Row>
-
 
 
 				</Grid>
 		);
 
+
+		return html;
+		
+	},
+	
+	render() {
+	
+
 		return (
 			<Page style={{}}>
-				{html}
+				{this.renderPage()}
 				
 			</Page>
 		);

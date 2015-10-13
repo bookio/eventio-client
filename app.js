@@ -43,7 +43,10 @@ let routes = (
   	<DefaultRoute handler={require('./pages/events/events.js')} />  
   	
     <Route name="events"   path="/events"   handler={require('./pages/events/events.js')}/>
-    <Route name="event"    path="/event"    handler={require('./pages/event/event.js')}/>
+    
+    <Route name="event-new"    path="/event"    handler={require('./pages/event/event.js')}/>
+    <Route name="event"    path="/event/:id"    handler={require('./pages/event/event.js')}/>
+    
     <Route name="home"     path="/home"     handler={require('./pages/home/home.js')}/>
     <Route name="isotope"  path="/isotope"  handler={require('./pages/isotope/isotope.js')}/>
     <Route name="login"    path="/login"    handler={require('./pages/login/login.js')}/>
